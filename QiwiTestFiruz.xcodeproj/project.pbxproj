@@ -1,0 +1,510 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		9A4209371D1B0640002D4353 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A4209361D1B0640002D4353 /* main.m */; };
+		9A42093A1D1B0640002D4353 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A4209391D1B0640002D4353 /* AppDelegate.m */; };
+		9A42093D1D1B0640002D4353 /* QiwiTestFiruz.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 9A42093B1D1B0640002D4353 /* QiwiTestFiruz.xcdatamodeld */; };
+		9A4209401D1B0640002D4353 /* PersonsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A42093F1D1B0640002D4353 /* PersonsViewController.m */; };
+		9A4209431D1B0640002D4353 /* BalanceViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A4209421D1B0640002D4353 /* BalanceViewController.m */; };
+		9A4209461D1B0640002D4353 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9A4209441D1B0640002D4353 /* Main.storyboard */; };
+		9A4209481D1B0640002D4353 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9A4209471D1B0640002D4353 /* Assets.xcassets */; };
+		9A42094B1D1B0640002D4353 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9A4209491D1B0640002D4353 /* LaunchScreen.storyboard */; };
+		9AB450A61D1B0DAE00079840 /* RestHeper.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AB450A51D1B0DAE00079840 /* RestHeper.m */; };
+		9AB450AC1D1B0F2400079840 /* PersonViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AB450AB1D1B0F2400079840 /* PersonViewModel.m */; };
+		9AB450B31D1B0FA200079840 /* Person+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AB450B01D1B0FA200079840 /* Person+CoreDataProperties.m */; };
+		9AB450B41D1B0FA200079840 /* Person.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AB450B21D1B0FA200079840 /* Person.m */; };
+		9AB450B71D1B11A100079840 /* Balance.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AB450B61D1B11A100079840 /* Balance.m */; };
+		9AB450BA1D1B122000079840 /* BalanceViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AB450B91D1B122000079840 /* BalanceViewModel.m */; };
+		9AB450BD1D1B13AE00079840 /* DataHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AB450BC1D1B13AE00079840 /* DataHelper.m */; };
+		9AB450C01D1B183A00079840 /* ResponseError.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AB450BF1D1B183A00079840 /* ResponseError.m */; };
+		C983899CFFAC526014B24D51 /* libPods-QiwiTestFiruz.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 09BAB71A2047033C74B1308E /* libPods-QiwiTestFiruz.a */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		09BAB71A2047033C74B1308E /* libPods-QiwiTestFiruz.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-QiwiTestFiruz.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		410111E03249651B22A401AC /* Pods-QiwiTestFiruz.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-QiwiTestFiruz.debug.xcconfig"; path = "Pods/Target Support Files/Pods-QiwiTestFiruz/Pods-QiwiTestFiruz.debug.xcconfig"; sourceTree = "<group>"; };
+		9A4209321D1B0640002D4353 /* QiwiTestFiruz.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = QiwiTestFiruz.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		9A4209361D1B0640002D4353 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		9A4209381D1B0640002D4353 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		9A4209391D1B0640002D4353 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		9A42093C1D1B0640002D4353 /* QiwiTestFiruz.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = QiwiTestFiruz.xcdatamodel; sourceTree = "<group>"; };
+		9A42093E1D1B0640002D4353 /* PersonsViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PersonsViewController.h; sourceTree = "<group>"; };
+		9A42093F1D1B0640002D4353 /* PersonsViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PersonsViewController.m; sourceTree = "<group>"; };
+		9A4209411D1B0640002D4353 /* BalanceViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BalanceViewController.h; sourceTree = "<group>"; };
+		9A4209421D1B0640002D4353 /* BalanceViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BalanceViewController.m; sourceTree = "<group>"; };
+		9A4209451D1B0640002D4353 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		9A4209471D1B0640002D4353 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		9A42094A1D1B0640002D4353 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		9A42094C1D1B0640002D4353 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		9AB450A41D1B0DAE00079840 /* RestHeper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RestHeper.h; sourceTree = "<group>"; };
+		9AB450A51D1B0DAE00079840 /* RestHeper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RestHeper.m; sourceTree = "<group>"; };
+		9AB450AA1D1B0F2400079840 /* PersonViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PersonViewModel.h; sourceTree = "<group>"; };
+		9AB450AB1D1B0F2400079840 /* PersonViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PersonViewModel.m; sourceTree = "<group>"; };
+		9AB450AF1D1B0FA200079840 /* Person+CoreDataProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Person+CoreDataProperties.h"; sourceTree = "<group>"; };
+		9AB450B01D1B0FA200079840 /* Person+CoreDataProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Person+CoreDataProperties.m"; sourceTree = "<group>"; };
+		9AB450B11D1B0FA200079840 /* Person.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Person.h; sourceTree = "<group>"; };
+		9AB450B21D1B0FA200079840 /* Person.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Person.m; sourceTree = "<group>"; };
+		9AB450B51D1B11A100079840 /* Balance.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Balance.h; sourceTree = "<group>"; };
+		9AB450B61D1B11A100079840 /* Balance.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Balance.m; sourceTree = "<group>"; };
+		9AB450B81D1B122000079840 /* BalanceViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BalanceViewModel.h; sourceTree = "<group>"; };
+		9AB450B91D1B122000079840 /* BalanceViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BalanceViewModel.m; sourceTree = "<group>"; };
+		9AB450BB1D1B13AE00079840 /* DataHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DataHelper.h; sourceTree = "<group>"; };
+		9AB450BC1D1B13AE00079840 /* DataHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DataHelper.m; sourceTree = "<group>"; };
+		9AB450BE1D1B183A00079840 /* ResponseError.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ResponseError.h; sourceTree = "<group>"; };
+		9AB450BF1D1B183A00079840 /* ResponseError.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ResponseError.m; sourceTree = "<group>"; };
+		A4F566DD51F7FB8DEBBC35E2 /* Pods-QiwiTestFiruz.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-QiwiTestFiruz.release.xcconfig"; path = "Pods/Target Support Files/Pods-QiwiTestFiruz/Pods-QiwiTestFiruz.release.xcconfig"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		9A42092F1D1B0640002D4353 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C983899CFFAC526014B24D51 /* libPods-QiwiTestFiruz.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		9A4209291D1B0640002D4353 = {
+			isa = PBXGroup;
+			children = (
+				9A4209341D1B0640002D4353 /* QiwiTestFiruz */,
+				9A4209331D1B0640002D4353 /* Products */,
+				F7DB86AC0B7C9338EE784F64 /* Pods */,
+				A34611FC27C3D73F86768FE8 /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		9A4209331D1B0640002D4353 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				9A4209321D1B0640002D4353 /* QiwiTestFiruz.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		9A4209341D1B0640002D4353 /* QiwiTestFiruz */ = {
+			isa = PBXGroup;
+			children = (
+				9AB450A91D1B0DEC00079840 /* Resources */,
+				9AB450A71D1B0DB200079840 /* Networking */,
+				9AB450AE1D1B0F5500079840 /* Model */,
+				9AB450A81D1B0DCB00079840 /* Views */,
+				9A4209381D1B0640002D4353 /* AppDelegate.h */,
+				9A4209391D1B0640002D4353 /* AppDelegate.m */,
+				9A4209351D1B0640002D4353 /* Supporting Files */,
+			);
+			path = QiwiTestFiruz;
+			sourceTree = "<group>";
+		};
+		9A4209351D1B0640002D4353 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				9A4209361D1B0640002D4353 /* main.m */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		9A4209521D1B0992002D4353 /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				9A42093E1D1B0640002D4353 /* PersonsViewController.h */,
+				9A42093F1D1B0640002D4353 /* PersonsViewController.m */,
+				9A4209411D1B0640002D4353 /* BalanceViewController.h */,
+				9A4209421D1B0640002D4353 /* BalanceViewController.m */,
+			);
+			name = ViewControllers;
+			sourceTree = "<group>";
+		};
+		9AB450A71D1B0DB200079840 /* Networking */ = {
+			isa = PBXGroup;
+			children = (
+				9AB450A41D1B0DAE00079840 /* RestHeper.h */,
+				9AB450A51D1B0DAE00079840 /* RestHeper.m */,
+			);
+			name = Networking;
+			sourceTree = "<group>";
+		};
+		9AB450A81D1B0DCB00079840 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				9AB450AD1D1B0F2A00079840 /* ViewModels */,
+				9A4209521D1B0992002D4353 /* ViewControllers */,
+			);
+			name = Views;
+			sourceTree = "<group>";
+		};
+		9AB450A91D1B0DEC00079840 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				9A4209441D1B0640002D4353 /* Main.storyboard */,
+				9A4209471D1B0640002D4353 /* Assets.xcassets */,
+				9A4209491D1B0640002D4353 /* LaunchScreen.storyboard */,
+				9A42094C1D1B0640002D4353 /* Info.plist */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+		};
+		9AB450AD1D1B0F2A00079840 /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				9AB450AA1D1B0F2400079840 /* PersonViewModel.h */,
+				9AB450AB1D1B0F2400079840 /* PersonViewModel.m */,
+				9AB450B81D1B122000079840 /* BalanceViewModel.h */,
+				9AB450B91D1B122000079840 /* BalanceViewModel.m */,
+			);
+			name = ViewModels;
+			sourceTree = "<group>";
+		};
+		9AB450AE1D1B0F5500079840 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				9AB450BB1D1B13AE00079840 /* DataHelper.h */,
+				9AB450BC1D1B13AE00079840 /* DataHelper.m */,
+				9AB450BE1D1B183A00079840 /* ResponseError.h */,
+				9AB450BF1D1B183A00079840 /* ResponseError.m */,
+				9AB450B51D1B11A100079840 /* Balance.h */,
+				9AB450B61D1B11A100079840 /* Balance.m */,
+				9AB450B11D1B0FA200079840 /* Person.h */,
+				9AB450B21D1B0FA200079840 /* Person.m */,
+				9AB450AF1D1B0FA200079840 /* Person+CoreDataProperties.h */,
+				9AB450B01D1B0FA200079840 /* Person+CoreDataProperties.m */,
+				9A42093B1D1B0640002D4353 /* QiwiTestFiruz.xcdatamodeld */,
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
+		A34611FC27C3D73F86768FE8 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				09BAB71A2047033C74B1308E /* libPods-QiwiTestFiruz.a */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		F7DB86AC0B7C9338EE784F64 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				410111E03249651B22A401AC /* Pods-QiwiTestFiruz.debug.xcconfig */,
+				A4F566DD51F7FB8DEBBC35E2 /* Pods-QiwiTestFiruz.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		9A4209311D1B0640002D4353 /* QiwiTestFiruz */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 9A42094F1D1B0640002D4353 /* Build configuration list for PBXNativeTarget "QiwiTestFiruz" */;
+			buildPhases = (
+				2C877B6D8B9FB527E15162DB /* [CP] Check Pods Manifest.lock */,
+				9A42092E1D1B0640002D4353 /* Sources */,
+				9A42092F1D1B0640002D4353 /* Frameworks */,
+				9A4209301D1B0640002D4353 /* Resources */,
+				672BEFB3DC178697EC3083A9 /* [CP] Embed Pods Frameworks */,
+				B654EE8BB80FAA9FFBC1B602 /* [CP] Copy Pods Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = QiwiTestFiruz;
+			productName = QiwiTestFiruz;
+			productReference = 9A4209321D1B0640002D4353 /* QiwiTestFiruz.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		9A42092A1D1B0640002D4353 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0730;
+				ORGANIZATIONNAME = "Firuz Narzikulov";
+				TargetAttributes = {
+					9A4209311D1B0640002D4353 = {
+						CreatedOnToolsVersion = 7.3.1;
+					};
+				};
+			};
+			buildConfigurationList = 9A42092D1D1B0640002D4353 /* Build configuration list for PBXProject "QiwiTestFiruz" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 9A4209291D1B0640002D4353;
+			productRefGroup = 9A4209331D1B0640002D4353 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				9A4209311D1B0640002D4353 /* QiwiTestFiruz */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		9A4209301D1B0640002D4353 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9A42094B1D1B0640002D4353 /* LaunchScreen.storyboard in Resources */,
+				9A4209481D1B0640002D4353 /* Assets.xcassets in Resources */,
+				9A4209461D1B0640002D4353 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		2C877B6D8B9FB527E15162DB /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		672BEFB3DC178697EC3083A9 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-QiwiTestFiruz/Pods-QiwiTestFiruz-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		B654EE8BB80FAA9FFBC1B602 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-QiwiTestFiruz/Pods-QiwiTestFiruz-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		9A42092E1D1B0640002D4353 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9AB450B71D1B11A100079840 /* Balance.m in Sources */,
+				9AB450B31D1B0FA200079840 /* Person+CoreDataProperties.m in Sources */,
+				9A4209431D1B0640002D4353 /* BalanceViewController.m in Sources */,
+				9A4209401D1B0640002D4353 /* PersonsViewController.m in Sources */,
+				9AB450AC1D1B0F2400079840 /* PersonViewModel.m in Sources */,
+				9AB450A61D1B0DAE00079840 /* RestHeper.m in Sources */,
+				9A42093A1D1B0640002D4353 /* AppDelegate.m in Sources */,
+				9AB450B41D1B0FA200079840 /* Person.m in Sources */,
+				9AB450C01D1B183A00079840 /* ResponseError.m in Sources */,
+				9AB450BA1D1B122000079840 /* BalanceViewModel.m in Sources */,
+				9AB450BD1D1B13AE00079840 /* DataHelper.m in Sources */,
+				9A42093D1D1B0640002D4353 /* QiwiTestFiruz.xcdatamodeld in Sources */,
+				9A4209371D1B0640002D4353 /* main.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		9A4209441D1B0640002D4353 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				9A4209451D1B0640002D4353 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		9A4209491D1B0640002D4353 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				9A42094A1D1B0640002D4353 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		9A42094D1D1B0640002D4353 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		9A42094E1D1B0640002D4353 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		9A4209501D1B0640002D4353 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 410111E03249651B22A401AC /* Pods-QiwiTestFiruz.debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = QiwiTestFiruz/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = org.insk.QiwiTestFiruz;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				USER_HEADER_SEARCH_PATHS = "${PROJECT_DIR}/Pods/**";
+			};
+			name = Debug;
+		};
+		9A4209511D1B0640002D4353 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = A4F566DD51F7FB8DEBBC35E2 /* Pods-QiwiTestFiruz.release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = QiwiTestFiruz/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = org.insk.QiwiTestFiruz;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				USER_HEADER_SEARCH_PATHS = "${PROJECT_DIR}/Pods/**";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		9A42092D1D1B0640002D4353 /* Build configuration list for PBXProject "QiwiTestFiruz" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				9A42094D1D1B0640002D4353 /* Debug */,
+				9A42094E1D1B0640002D4353 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		9A42094F1D1B0640002D4353 /* Build configuration list for PBXNativeTarget "QiwiTestFiruz" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				9A4209501D1B0640002D4353 /* Debug */,
+				9A4209511D1B0640002D4353 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		9A42093B1D1B0640002D4353 /* QiwiTestFiruz.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				9A42093C1D1B0640002D4353 /* QiwiTestFiruz.xcdatamodel */,
+			);
+			currentVersion = 9A42093C1D1B0640002D4353 /* QiwiTestFiruz.xcdatamodel */;
+			path = QiwiTestFiruz.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
+	};
+	rootObject = 9A42092A1D1B0640002D4353 /* Project object */;
+}
