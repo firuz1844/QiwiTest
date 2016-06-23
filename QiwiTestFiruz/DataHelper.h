@@ -16,10 +16,11 @@
 
 + (instancetype)shared;
 
-@property (strong, nonatomic, readonly) NSFetchedResultsController *fetchedResultsController;
-
 // Getting view models
-- (void)getPersonsSuccess:(void (^)(NSArray<PersonViewModel*> *persons))success failure:(void (^)(NSError *error))failure;
-- (void)getBalanceForPerson:(Person*)person success:(void (^)(NSArray<BalanceViewModel*> *balances))success failure:(void (^)(NSError *error))failure;
+- (void)updatePersons:(void (^)(void))completion;
+- (void)loadBalanceForPerson:(Person*)person completion:(void (^)(void))completion;
 
+
+- (NSFetchedResultsController*)fetchedResultsControllerWithFetchRequest:(NSFetchRequest*)fetchRequest;
+- (NSManagedObjectContext*)defaultContext;
 @end

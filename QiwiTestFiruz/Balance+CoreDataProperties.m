@@ -1,5 +1,5 @@
 //
-//  Person+CoreDataProperties.m
+//  Balance+CoreDataProperties.m
 //  QiwiTestFiruz
 //
 //  Created by Firuz Narzikulov on 24.06.16.
@@ -9,20 +9,16 @@
 //  to delete and recreate this implementation file for your updated model.
 //
 
-#import "Person+CoreDataProperties.h"
+#import "Balance+CoreDataProperties.h"
 
-@implementation Person (CoreDataProperties)
+@implementation Balance (CoreDataProperties)
 
-@dynamic id;
-@dynamic name;
+@dynamic amount;
+@dynamic currency;
 
 + (NSDictionary *)attributesKeyMap {
-    return @{@"id"      : @"id",
-             @"name"    : @"name"};
-}
-
-+ (NSArray *)identificationAttributes {
-    return @[@"id"];
+    return @{@"currency"    : @"currency",
+             @"amount"      : @"amount"};
 }
 
 @end

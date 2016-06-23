@@ -18,12 +18,14 @@
 		9A7593441D1B376900C3A8FE /* NSArray+Mapper.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A7593431D1B376900C3A8FE /* NSArray+Mapper.m */; };
 		9AB450A61D1B0DAE00079840 /* RestHeper.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AB450A51D1B0DAE00079840 /* RestHeper.m */; };
 		9AB450AC1D1B0F2400079840 /* PersonViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AB450AB1D1B0F2400079840 /* PersonViewModel.m */; };
-		9AB450B31D1B0FA200079840 /* Person+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AB450B01D1B0FA200079840 /* Person+CoreDataProperties.m */; };
-		9AB450B41D1B0FA200079840 /* Person.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AB450B21D1B0FA200079840 /* Person.m */; };
-		9AB450B71D1B11A100079840 /* Balance.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AB450B61D1B11A100079840 /* Balance.m */; };
 		9AB450BA1D1B122000079840 /* BalanceViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AB450B91D1B122000079840 /* BalanceViewModel.m */; };
 		9AB450BD1D1B13AE00079840 /* DataHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AB450BC1D1B13AE00079840 /* DataHelper.m */; };
-		9AB450C01D1B183A00079840 /* ResponseObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AB450BF1D1B183A00079840 /* ResponseObject.m */; };
+		9AE8919C1D1C8E8A00B37FE8 /* Balance+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AE891991D1C8E8A00B37FE8 /* Balance+CoreDataProperties.m */; };
+		9AE8919D1D1C8E8A00B37FE8 /* Balance.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AE8919B1D1C8E8A00B37FE8 /* Balance.m */; };
+		9AE891A21D1C8EEF00B37FE8 /* Person+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AE8919F1D1C8EEF00B37FE8 /* Person+CoreDataProperties.m */; };
+		9AE891A31D1C8EEF00B37FE8 /* Person.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AE891A11D1C8EEF00B37FE8 /* Person.m */; };
+		9AE891AB1D1C904800B37FE8 /* ResponseObject+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AE891A81D1C904800B37FE8 /* ResponseObject+CoreDataProperties.m */; };
+		9AE891AC1D1C904800B37FE8 /* ResponseObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AE891AA1D1C904800B37FE8 /* ResponseObject.m */; };
 		C983899CFFAC526014B24D51 /* libPods-QiwiTestFiruz.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 09BAB71A2047033C74B1308E /* libPods-QiwiTestFiruz.a */; };
 /* End PBXBuildFile section */
 
@@ -49,18 +51,22 @@
 		9AB450A51D1B0DAE00079840 /* RestHeper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RestHeper.m; sourceTree = "<group>"; };
 		9AB450AA1D1B0F2400079840 /* PersonViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PersonViewModel.h; sourceTree = "<group>"; };
 		9AB450AB1D1B0F2400079840 /* PersonViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PersonViewModel.m; sourceTree = "<group>"; };
-		9AB450AF1D1B0FA200079840 /* Person+CoreDataProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Person+CoreDataProperties.h"; sourceTree = "<group>"; };
-		9AB450B01D1B0FA200079840 /* Person+CoreDataProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Person+CoreDataProperties.m"; sourceTree = "<group>"; };
-		9AB450B11D1B0FA200079840 /* Person.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Person.h; sourceTree = "<group>"; };
-		9AB450B21D1B0FA200079840 /* Person.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Person.m; sourceTree = "<group>"; };
-		9AB450B51D1B11A100079840 /* Balance.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Balance.h; sourceTree = "<group>"; };
-		9AB450B61D1B11A100079840 /* Balance.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Balance.m; sourceTree = "<group>"; };
 		9AB450B81D1B122000079840 /* BalanceViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BalanceViewModel.h; sourceTree = "<group>"; };
 		9AB450B91D1B122000079840 /* BalanceViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BalanceViewModel.m; sourceTree = "<group>"; };
 		9AB450BB1D1B13AE00079840 /* DataHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DataHelper.h; sourceTree = "<group>"; };
 		9AB450BC1D1B13AE00079840 /* DataHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DataHelper.m; sourceTree = "<group>"; };
-		9AB450BE1D1B183A00079840 /* ResponseObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ResponseObject.h; sourceTree = "<group>"; };
-		9AB450BF1D1B183A00079840 /* ResponseObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ResponseObject.m; sourceTree = "<group>"; };
+		9AE891981D1C8E8A00B37FE8 /* Balance+CoreDataProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Balance+CoreDataProperties.h"; sourceTree = "<group>"; };
+		9AE891991D1C8E8A00B37FE8 /* Balance+CoreDataProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Balance+CoreDataProperties.m"; sourceTree = "<group>"; };
+		9AE8919A1D1C8E8A00B37FE8 /* Balance.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Balance.h; sourceTree = "<group>"; };
+		9AE8919B1D1C8E8A00B37FE8 /* Balance.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Balance.m; sourceTree = "<group>"; };
+		9AE8919E1D1C8EEF00B37FE8 /* Person+CoreDataProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Person+CoreDataProperties.h"; sourceTree = "<group>"; };
+		9AE8919F1D1C8EEF00B37FE8 /* Person+CoreDataProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Person+CoreDataProperties.m"; sourceTree = "<group>"; };
+		9AE891A01D1C8EEF00B37FE8 /* Person.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Person.h; sourceTree = "<group>"; };
+		9AE891A11D1C8EEF00B37FE8 /* Person.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Person.m; sourceTree = "<group>"; };
+		9AE891A71D1C904800B37FE8 /* ResponseObject+CoreDataProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "ResponseObject+CoreDataProperties.h"; sourceTree = "<group>"; };
+		9AE891A81D1C904800B37FE8 /* ResponseObject+CoreDataProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "ResponseObject+CoreDataProperties.m"; sourceTree = "<group>"; };
+		9AE891A91D1C904800B37FE8 /* ResponseObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ResponseObject.h; sourceTree = "<group>"; };
+		9AE891AA1D1C904800B37FE8 /* ResponseObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ResponseObject.m; sourceTree = "<group>"; };
 		A4F566DD51F7FB8DEBBC35E2 /* Pods-QiwiTestFiruz.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-QiwiTestFiruz.release.xcconfig"; path = "Pods/Target Support Files/Pods-QiwiTestFiruz/Pods-QiwiTestFiruz.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -170,16 +176,20 @@
 		9AB450AE1D1B0F5500079840 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				9AE891A71D1C904800B37FE8 /* ResponseObject+CoreDataProperties.h */,
+				9AE891A81D1C904800B37FE8 /* ResponseObject+CoreDataProperties.m */,
+				9AE891A91D1C904800B37FE8 /* ResponseObject.h */,
+				9AE891AA1D1C904800B37FE8 /* ResponseObject.m */,
+				9AE8919E1D1C8EEF00B37FE8 /* Person+CoreDataProperties.h */,
+				9AE8919F1D1C8EEF00B37FE8 /* Person+CoreDataProperties.m */,
+				9AE891A01D1C8EEF00B37FE8 /* Person.h */,
+				9AE891A11D1C8EEF00B37FE8 /* Person.m */,
+				9AE891981D1C8E8A00B37FE8 /* Balance+CoreDataProperties.h */,
+				9AE891991D1C8E8A00B37FE8 /* Balance+CoreDataProperties.m */,
+				9AE8919A1D1C8E8A00B37FE8 /* Balance.h */,
+				9AE8919B1D1C8E8A00B37FE8 /* Balance.m */,
 				9AB450BB1D1B13AE00079840 /* DataHelper.h */,
 				9AB450BC1D1B13AE00079840 /* DataHelper.m */,
-				9AB450BE1D1B183A00079840 /* ResponseObject.h */,
-				9AB450BF1D1B183A00079840 /* ResponseObject.m */,
-				9AB450B51D1B11A100079840 /* Balance.h */,
-				9AB450B61D1B11A100079840 /* Balance.m */,
-				9AB450B11D1B0FA200079840 /* Person.h */,
-				9AB450B21D1B0FA200079840 /* Person.m */,
-				9AB450AF1D1B0FA200079840 /* Person+CoreDataProperties.h */,
-				9AB450B01D1B0FA200079840 /* Person+CoreDataProperties.m */,
 				9A42093B1D1B0640002D4353 /* QiwiTestFiruz.xcdatamodeld */,
 				9A7593421D1B376900C3A8FE /* NSArray+Mapper.h */,
 				9A7593431D1B376900C3A8FE /* NSArray+Mapper.m */,
@@ -325,19 +335,21 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9AB450B71D1B11A100079840 /* Balance.m in Sources */,
-				9AB450B31D1B0FA200079840 /* Person+CoreDataProperties.m in Sources */,
 				9A4209431D1B0640002D4353 /* BalanceViewController.m in Sources */,
+				9AE891AC1D1C904800B37FE8 /* ResponseObject.m in Sources */,
+				9AE8919C1D1C8E8A00B37FE8 /* Balance+CoreDataProperties.m in Sources */,
 				9A4209401D1B0640002D4353 /* PersonsViewController.m in Sources */,
 				9AB450AC1D1B0F2400079840 /* PersonViewModel.m in Sources */,
 				9AB450A61D1B0DAE00079840 /* RestHeper.m in Sources */,
 				9A42093A1D1B0640002D4353 /* AppDelegate.m in Sources */,
+				9AE891AB1D1C904800B37FE8 /* ResponseObject+CoreDataProperties.m in Sources */,
 				9A7593441D1B376900C3A8FE /* NSArray+Mapper.m in Sources */,
-				9AB450B41D1B0FA200079840 /* Person.m in Sources */,
-				9AB450C01D1B183A00079840 /* ResponseObject.m in Sources */,
+				9AE8919D1D1C8E8A00B37FE8 /* Balance.m in Sources */,
 				9AB450BA1D1B122000079840 /* BalanceViewModel.m in Sources */,
 				9AB450BD1D1B13AE00079840 /* DataHelper.m in Sources */,
 				9A42093D1D1B0640002D4353 /* QiwiTestFiruz.xcdatamodeld in Sources */,
+				9AE891A31D1C8EEF00B37FE8 /* Person.m in Sources */,
+				9AE891A21D1C8EEF00B37FE8 /* Person+CoreDataProperties.m in Sources */,
 				9A4209371D1B0640002D4353 /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -12,10 +12,11 @@
 
 #import "ReactiveCocoa.h"
 
-@interface BalanceViewController ()
+@interface BalanceViewController () <NSFetchedResultsControllerDelegate>
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
-@property (strong, nonatomic) NSArray *balances;
+@property (nonatomic, strong) NSFetchedResultsController *fetchedResultsController;
+
 
 @end
 
@@ -30,13 +31,50 @@
     }
 }
 
+- (void)viewDidLoad {
+    [super viewDidLoad];
+    
+    UIRefreshControl *refreshControl = [[UIRefreshControl alloc] init];
+    [refreshControl addTarget:self action:@selector(refresh:) forControlEvents:UIControlEventValueChanged];
+    [self.tableView addSubview:refreshControl];
+    
+    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
+    NSEntityDescription *entity = [NSEntityDescription entityForName:@"Balance" inManagedObjectContext:[[DataHelper shared] defaultContext]];
+    [fetchRequest setEntity:entity];
+    [fetchRequest setFetchBatchSize:20];
+    
+    NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"currency" ascending:NO];
+    NSArray *sortDescriptors = @[sortDescriptor];
+    
+    [fetchRequest setSortDescriptors:sortDescriptors];
+
+    
+    self.fetchedResultsController = [[DataHelper shared] fetchedResultsControllerWithFetchRequest:fetchRequest];
+    self.fetchedResultsController.delegate = self;
+    
+}
+
+- (void)refresh:(UIRefreshControl *)refreshControl {
+    [self loadData:^{
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [refreshControl endRefreshing];
+        });
+    }];
+}
+
+- (void)loadData:(void (^)(void))completion {
+    [[DataHelper shared] loadBalanceForPerson:self.person.person completion:completion];
+}
+
+
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return self.balances.count;
+    id <NSFetchedResultsSectionInfo> sectionInfo = [self.fetchedResultsController.sections objectAtIndex:section];
+    return [sectionInfo numberOfObjects];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell" forIndexPath:indexPath];
-    BalanceViewModel *object = [self.balances objectAtIndex:indexPath.row];
+    BalanceViewModel *object = [[BalanceViewModel alloc] initWithBalance:[self.fetchedResultsController objectAtIndexPath:indexPath]];
     [self configureCell:cell withObject:object];
     return cell;
 }
@@ -45,34 +83,11 @@
     cell.textLabel.text = object.balanceString;
 }
 
-
-- (void)viewDidLoad {
-    [super viewDidLoad];
-    
-    UIRefreshControl *refreshControl = [[UIRefreshControl alloc] init];
-    [refreshControl addTarget:self action:@selector(refresh:) forControlEvents:UIControlEventValueChanged];
-    [self.tableView addSubview:refreshControl];
-}
-
-- (void)refresh:(UIRefreshControl *)refreshControl {
- 
-    @weakify(self)
-    [[DataHelper shared] getBalanceForPerson:self.person.person success:^(NSArray<BalanceViewModel *> *balances) {
-        @strongify(self)
-        self.balances = balances;
-        dispatch_async(dispatch_get_main_queue(), ^{
-            @strongify(self)
-            [self.tableView reloadData];
-        });
-        [refreshControl endRefreshing];
-    } failure:^(NSError *error) {
-        NSLog(@"%@", error);
-        [refreshControl endRefreshing];
-    }];
-}
-
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
 }
 
+- (void)controllerDidChangeContent:(NSFetchedResultsController *)controller {
+    [self.tableView reloadData];
+}
 @end

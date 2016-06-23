@@ -1,5 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="10174" systemVersion="15E65" minimumToolsVersion="Automatic">
+    <entity name="Balance" representedClassName="Balance" syncable="YES">
+        <attribute name="amount" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <attribute name="currency" optional="YES" attributeType="String" syncable="YES"/>
+    </entity>
     <entity name="Person" representedClassName="Person">
         <attribute name="id" optional="YES" attributeType="Integer 32" defaultValueString="0">
             <userInfo/>
@@ -7,7 +11,20 @@
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
         <userInfo/>
     </entity>
+    <entity name="ResponseObject" representedClassName="ResponseObject" syncable="YES">
+        <attribute name="code" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <attribute name="message" optional="YES" attributeType="String" syncable="YES"/>
+    </entity>
+    <configuration name="Disk">
+        <memberEntity name="Person"/>
+    </configuration>
+    <configuration name="Memory">
+        <memberEntity name="Balance"/>
+        <memberEntity name="ResponseObject"/>
+    </configuration>
     <elements>
         <element name="Person" positionX="261" positionY="189" width="128" height="75"/>
+        <element name="Balance" positionX="261" positionY="207" width="128" height="75"/>
+        <element name="ResponseObject" positionX="270" positionY="234" width="128" height="30"/>
     </elements>
 </model>

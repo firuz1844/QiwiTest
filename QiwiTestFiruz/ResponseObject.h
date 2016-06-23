@@ -1,17 +1,22 @@
 //
-//  ResponseError.h
+//  ResponseObject.h
 //  QiwiTestFiruz
 //
-//  Created by Firuz Narzikulov on 22.06.16.
+//  Created by Firuz Narzikulov on 24.06.16.
 //  Copyright © 2016 Firuz Narzikulov. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>
-#import "RestHeper.h"
+#import <CoreData/CoreData.h>
 
-@interface ResponseObject : NSObject <RestHelperMappedObjectProtocol>
+NS_ASSUME_NONNULL_BEGIN
 
-@property (nonatomic, assign) NSInteger resultCode;
-@property (nonatomic, strong) NSString *message;
+@interface ResponseObject : NSManagedObject
+
+// Insert code here to declare functionality of your managed object subclass
 
 @end
+
+NS_ASSUME_NONNULL_END
+
+#import "ResponseObject+CoreDataProperties.h"

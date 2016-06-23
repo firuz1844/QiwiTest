@@ -33,8 +33,6 @@ static NSString * const kBalanceKeyPath = @"balances";
 -(instancetype)init {
     self = [super init];
     if (self) {
-        NSURL *baseUrl = [NSURL URLWithString:kBaseUrl];
-        self.objectManager = [RKObjectManager managerWithBaseURL:baseUrl];
         [self setup];
     }
     return self;
@@ -42,40 +40,52 @@ static NSString * const kBalanceKeyPath = @"balances";
 
 - (void)setup {
     
+    // Init manager
+    self.objectManager = [RKObjectManager managerWithBaseURL:[NSURL URLWithString:kBaseUrl]];
+    
+    
     NSError *error = nil;
     
-    NSURL *modelURL = [NSURL fileURLWithPath:[[NSBundle mainBundle] pathForResource:@"QiwiTestFiruz" ofType:@"momd"]];
-    
-    NSManagedObjectModel *managedObjectModel = [[[NSManagedObjectModel alloc] initWithContentsOfURL:modelURL] mutableCopy];
+    NSManagedObjectModel *managedObjectModel = [NSManagedObjectModel mergedModelFromBundles:nil];
     RKManagedObjectStore *managedObjectStore = [[RKManagedObjectStore alloc] initWithManagedObjectModel:managedObjectModel];
+    self.objectManager.managedObjectStore = managedObjectStore;
     
     // Initialize the Core Data stack
     [managedObjectStore createPersistentStoreCoordinator];
     
-    NSPersistentStore __unused *persistentStore = [managedObjectStore addInMemoryPersistentStore:&error];
-    NSAssert(persistentStore, @"Failed to add persistent store: %@", error);
+    // Persistent store on disk
+    NSString *storePath = [RKApplicationDataDirectory() stringByAppendingPathComponent:@"QiwiTestFiruz.sqlite"];
+    NSString *seedPath = [[NSBundle mainBundle] pathForResource:@"QiwiTestFiruz" ofType:@"sqlite"];
+    NSPersistentStore *persistentStoreDisk = [managedObjectStore addSQLitePersistentStoreAtPath:storePath fromSeedDatabaseAtPath:seedPath withConfiguration:@"Disk" options:nil error:&error];
+    NSAssert(persistentStoreDisk, @"Failed to add persistent store: %@", error);
     
+    // Persistent store in memory
+    NSPersistentStore *persistentStoreMemory = [managedObjectStore.persistentStoreCoordinator addPersistentStoreWithType:NSInMemoryStoreType configuration:@"Memory" URL:nil options:nil error:&error];
+    NSAssert(persistentStoreMemory, @"Failed to add persistent store: %@", error);
+    
+    // Context
     [managedObjectStore createManagedObjectContexts];
     
     // Set the default store shared instance
     [RKManagedObjectStore setDefaultStore:managedObjectStore];
     
-    // Configure the object manager
-    self.objectManager = [RKObjectManager managerWithBaseURL:[NSURL URLWithString:kBaseUrl]];
-    self.objectManager.managedObjectStore = managedObjectStore;
+    
+    // Mapping entities
     
     [RKObjectManager setSharedManager:self.objectManager];
     
     RKEntityMapping *personMapping = [RKEntityMapping mappingForEntityForName:@"Person" inManagedObjectStore:managedObjectStore];
     [personMapping addAttributeMappingsFromDictionary:[Person attributesKeyMap]];
     personMapping.identificationAttributes = [Person identificationAttributes];
-
     
-//    RKEntityMapping *balanceMapping = [RKEntityMapping mappingForClass:[Balance class]];
-//    [balanceMapping addAttributeMappingsFromDictionary:[Balance attributesKeyMap]];
-//    
-//    [personMapping addRelationshipMappingWithSourceKeyPath:@"balance" mapping:balanceMapping];
-
+    
+    RKEntityMapping *balanceMapping = [RKEntityMapping mappingForEntityForName:@"Balance" inManagedObjectStore:managedObjectStore];
+    [personMapping addAttributeMappingsFromDictionary:[Balance attributesKeyMap]];
+    
+    RKEntityMapping *responseMapping = [RKEntityMapping mappingForEntityForName:@"ResponseObject" inManagedObjectStore:managedObjectStore];
+    [responseMapping addAttributeMappingsFromDictionary:[Balance attributesKeyMap]];
+    
+    
     RKResponseDescriptor *descriptor =
     [RKResponseDescriptor responseDescriptorWithMapping:personMapping
                                                  method:RKRequestMethodGET
@@ -85,52 +95,64 @@ static NSString * const kBalanceKeyPath = @"balances";
      ];
     
     [self.objectManager addResponseDescriptor:descriptor];
-
+    
+    descriptor =
+    [RKResponseDescriptor responseDescriptorWithMapping:balanceMapping
+                                                 method:RKRequestMethodGET
+                                            pathPattern:kBalancePath
+                                                keyPath:kBalanceKeyPath
+                                            statusCodes:RKStatusCodeIndexSetForClass(RKStatusCodeClassSuccessful)
+     ];
+    
+    
+    [self.objectManager addResponseDescriptor:descriptor];
+    
+    descriptor =
+    [RKResponseDescriptor responseDescriptorWithMapping:responseMapping
+                                                 method:RKRequestMethodGET
+                                            pathPattern:nil
+                                                keyPath:nil
+                                            statusCodes:RKStatusCodeIndexSetForClass(RKStatusCodeClassSuccessful)
+     ];
+    
+    [self.objectManager addResponseDescriptor:descriptor];
+    
     
     [AFNetworkActivityIndicatorManager sharedManager].enabled = YES;
 }
 
-- (void)loadPersonsSuccess:(void (^)(NSArray *persons))success failure:(void (^)(NSError *error))failure {
+- (void)loadPersons:(void (^)(void))completion {
     
     [[RKObjectManager sharedManager] getObjectsAtPath:kPersonsPath
                                            parameters:nil
                                               success:^(RKObjectRequestOperation *operation, RKMappingResult *mappingResult) {
-                                                  NSManagedObjectContext *context = [(RKManagedObjectRequestOperation *)operation managedObjectContext];
-                                                  success([self fetchPersonsFromContextError:nil]);
-                                                  [context save:nil];
+                                                  RKManagedObjectRequestOperation *moperation = (RKManagedObjectRequestOperation*)operation;
+                                                  NSError *error;
+                                                  [moperation.managedObjectContext saveToPersistentStore:&error];
+                                                  if (error) {
+                                                      NSLog(@"Error saving context %@", error);
+                                                  }
+                                                  completion();
                                               } failure:^(RKObjectRequestOperation *operation, NSError *error) {
-                                                  failure(error);
+                                                  NSLog(@"Failed loading persons %@", error);
+                                                  completion();
                                               }];
 }
 
-- (void)loadBalanceForPerson:(Person*)person success:(void (^)(NSArray *balances))success failure:(void (^)(NSError *error))failure {
-    [[RKObjectManager sharedManager] getObjectsAtPath:kBalancePath
-                                           parameters:@{@"id" : person.id}
+- (void)loadBalanceForPerson:(Person*)person completion:(void (^)(void))completion {
+    NSString *path = [kBalancePath stringByReplacingOccurrencesOfString:@":d" withString:[NSString stringWithFormat:@"%d", person.id]];
+    
+    [[RKObjectManager sharedManager] getObjectsAtPath:path
+                                           parameters:nil
                                               success:^(RKObjectRequestOperation *operation, RKMappingResult *mappingResult) {
-                                                  success([mappingResult array]);
+                                                  completion();
                                               } failure:^(RKObjectRequestOperation *operation, NSError *error) {
-                                                  failure(error);
+                                                  NSLog(@"Error geting balances %@", error);
+                                                  completion();
                                               }];
-
+    
 }
 
-- (NSArray<Person*>*)fetchPersonsFromContextError:(NSError**)error {
-    
-    NSManagedObjectContext *context = [RKManagedObjectStore defaultStore].mainQueueManagedObjectContext;
-    NSFetchRequest *fetchRequest = [NSFetchRequest fetchRequestWithEntityName:@"Person"];
-    
-    NSSortDescriptor *descriptor = [NSSortDescriptor sortDescriptorWithKey:@"id" ascending:YES];
-    fetchRequest.sortDescriptors = @[descriptor];
-    
-    NSArray *fetchedObjects = [context executeFetchRequest:fetchRequest error:error];
-    
-    if  (!error)
-        return fetchedObjects;
-    
-    return nil;
-}
-
-#pragma mark - Core Data
 - (NSManagedObjectContext *)managedObjectContext {
     return [RKObjectManager sharedManager].managedObjectStore.mainQueueManagedObjectContext;
 }

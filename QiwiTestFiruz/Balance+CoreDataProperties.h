@@ -1,5 +1,5 @@
 //
-//  Person+CoreDataProperties.h
+//  Balance+CoreDataProperties.h
 //  QiwiTestFiruz
 //
 //  Created by Firuz Narzikulov on 24.06.16.
@@ -9,16 +9,15 @@
 //  to delete and recreate this implementation file for your updated model.
 //
 
-#import "Person.h"
+#import "Balance.h"
 #import "RestHeper.h"
-
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface Person (CoreDataProperties) <RestHelperMappedObjectProtocol>
+@interface Balance (CoreDataProperties) <RestHelperMappedObjectProtocol>
 
-@property (nullable, nonatomic, retain) NSNumber *id;
-@property (nullable, nonatomic, retain) NSString *name;
+@property (nullable, nonatomic, retain) NSNumber *amount;
+@property (nullable, nonatomic, retain) NSString *currency;
 
 @end
 

@@ -12,9 +12,11 @@
 #import "DataHelper.h"
 #import "PersonViewModel.h"
 
-@interface PersonsViewController ()
+#import "ReactiveCocoa.h"
 
-@property (nonatomic, strong) NSArray *persons;
+@interface PersonsViewController () <NSFetchedResultsControllerDelegate>
+
+@property (nonatomic, strong) NSFetchedResultsController *fetchedResultsController;
 
 @end
 
@@ -24,15 +26,32 @@
     [super viewDidLoad];
 
     self.balanceViewController = (BalanceViewController *)[[self.splitViewController.viewControllers lastObject] topViewController];
-    __weak typeof(self) weakSelf = self;
-    [[DataHelper shared] getPersonsSuccess:^(NSArray<PersonViewModel *> *persons) {
-        __strong typeof(weakSelf) strongSelf = weakSelf;
-        if (strongSelf) {
-            strongSelf.persons = persons;
-            [strongSelf.tableView reloadData];
-        }
-    } failure:^(NSError *error) {
-        NSLog(@"%@", error);
+    
+    self.refreshControl = [[UIRefreshControl alloc] init];
+    [self.refreshControl addTarget:self action:@selector(refresh:) forControlEvents:UIControlEventValueChanged];
+    
+    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
+    NSEntityDescription *entity = [NSEntityDescription entityForName:@"Person" inManagedObjectContext:[[DataHelper shared] defaultContext]];
+    [fetchRequest setEntity:entity];
+    
+    [fetchRequest setFetchBatchSize:20];
+    
+    NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"id" ascending:NO];
+    NSArray *sortDescriptors = @[sortDescriptor];
+    
+    [fetchRequest setSortDescriptors:sortDescriptors];
+    
+    self.fetchedResultsController = [[DataHelper shared] fetchedResultsControllerWithFetchRequest:fetchRequest];
+    self.fetchedResultsController.delegate = self;
+}
+
+- (void)refresh:(UIRefreshControl *)refreshControl {
+    [self updateData];
+}
+
+- (void)updateData {
+    [[DataHelper shared] updatePersons:^{
+        [self.refreshControl endRefreshing];
     }];
 }
 
@@ -52,7 +71,7 @@ static NSString * const kShowBalanceSegueIdentifier = @"showBalances";
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     if ([[segue identifier] isEqualToString:kShowBalanceSegueIdentifier]) {
         NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
-        PersonViewModel *object = [self.persons objectAtIndex:indexPath.row];
+        PersonViewModel *object = [[PersonViewModel alloc] initWithPerson:[self.fetchedResultsController objectAtIndexPath:indexPath]];
         BalanceViewController *controller = (BalanceViewController *)[[segue destinationViewController] topViewController];
         [controller setPerson:object];
         controller.navigationItem.leftBarButtonItem = self.splitViewController.displayModeButtonItem;
@@ -67,18 +86,24 @@ static NSString * const kShowBalanceSegueIdentifier = @"showBalances";
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return self.persons.count;
+    id<NSFetchedResultsSectionInfo> sectionInfo = [self.fetchedResultsController.sections objectAtIndex:section];
+    return [sectionInfo numberOfObjects];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell" forIndexPath:indexPath];
-    PersonViewModel *object = [self.persons objectAtIndex:indexPath.row];
+    PersonViewModel *object = [[PersonViewModel alloc] initWithPerson:[self.fetchedResultsController objectAtIndexPath:indexPath]];
     [self configureCell:cell withObject:object];
     return cell;
 }
 
 - (void)configureCell:(UITableViewCell *)cell withObject:(PersonViewModel *)object {
     cell.textLabel.text = object.nameText;
+}
+
+- (void)controllerDidChangeContent:(NSFetchedResultsController *)controller
+{
+    [self.tableView reloadData];
 }
 
 @end

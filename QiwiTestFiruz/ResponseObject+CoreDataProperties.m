@@ -1,5 +1,5 @@
 //
-//  Person+CoreDataProperties.h
+//  ResponseObject+CoreDataProperties.m
 //  QiwiTestFiruz
 //
 //  Created by Firuz Narzikulov on 24.06.16.
@@ -9,17 +9,17 @@
 //  to delete and recreate this implementation file for your updated model.
 //
 
-#import "Person.h"
-#import "RestHeper.h"
+#import "ResponseObject+CoreDataProperties.h"
 
+@implementation ResponseObject (CoreDataProperties)
 
-NS_ASSUME_NONNULL_BEGIN
+@dynamic code;
+@dynamic message;
 
-@interface Person (CoreDataProperties) <RestHelperMappedObjectProtocol>
++ (NSDictionary *)attributesKeyMap {
+    return @{@"result_code"    : @"code",
+             @"message" : @"message"};
+}
 
-@property (nullable, nonatomic, retain) NSNumber *id;
-@property (nullable, nonatomic, retain) NSString *name;
 
 @end
-
-NS_ASSUME_NONNULL_END
