@@ -10,11 +10,11 @@
 #import "BalanceViewController.h"
 
 #import "DataHelper.h"
+#import "PersonViewModel.h"
 
 @interface PersonsViewController ()
 
-@property (strong, nonatomic) NSFetchedResultsController *fetchedResultsController;
-@property (strong, nonatomic) NSManagedObjectContext *managedObjectContext;
+@property (nonatomic, strong) NSArray *persons;
 
 @end
 
@@ -23,8 +23,17 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 
-    self.fetchedResultsController = [[DataHelper shared] fetchedResultsController];
     self.balanceViewController = (BalanceViewController *)[[self.splitViewController.viewControllers lastObject] topViewController];
+    __weak typeof(self) weakSelf = self;
+    [[DataHelper shared] getPersonsSuccess:^(NSArray<PersonViewModel *> *persons) {
+        __strong typeof(weakSelf) strongSelf = weakSelf;
+        if (strongSelf) {
+            strongSelf.persons = persons;
+            [strongSelf.tableView reloadData];
+        }
+    } failure:^(NSError *error) {
+        NSLog(@"%@", error);
+    }];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -38,14 +47,14 @@
 
 #pragma mark - Segues
 
-static NSString * const kShowBalaceSegueIdentifier = @"showBalances";
+static NSString * const kShowBalanceSegueIdentifier = @"showBalances";
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    if ([[segue identifier] isEqualToString:kShowBalaceSegueIdentifier]) {
+    if ([[segue identifier] isEqualToString:kShowBalanceSegueIdentifier]) {
         NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
-        NSManagedObject *object = [[self fetchedResultsController] objectAtIndexPath:indexPath];
+        PersonViewModel *object = [self.persons objectAtIndex:indexPath.row];
         BalanceViewController *controller = (BalanceViewController *)[[segue destinationViewController] topViewController];
-        [controller setDetailItem:object];
+        [controller setPerson:object];
         controller.navigationItem.leftBarButtonItem = self.splitViewController.displayModeButtonItem;
         controller.navigationItem.leftItemsSupplementBackButton = YES;
     }
@@ -54,85 +63,22 @@ static NSString * const kShowBalaceSegueIdentifier = @"showBalances";
 #pragma mark - Table View
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return [[self.fetchedResultsController sections] count];
+    return 1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    id <NSFetchedResultsSectionInfo> sectionInfo = [self.fetchedResultsController sections][section];
-    return [sectionInfo numberOfObjects];
+    return self.persons.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell" forIndexPath:indexPath];
-    NSManagedObject *object = [[self fetchedResultsController] objectAtIndexPath:indexPath];
+    PersonViewModel *object = [self.persons objectAtIndex:indexPath.row];
     [self configureCell:cell withObject:object];
     return cell;
 }
 
-- (void)configureCell:(UITableViewCell *)cell withObject:(NSManagedObject *)object {
-    cell.textLabel.text = [[object valueForKey:@"name"] description];
+- (void)configureCell:(UITableViewCell *)cell withObject:(PersonViewModel *)object {
+    cell.textLabel.text = object.nameText;
 }
-
-- (void)controllerWillChangeContent:(NSFetchedResultsController *)controller
-{
-    [self.tableView beginUpdates];
-}
-
-- (void)controller:(NSFetchedResultsController *)controller didChangeSection:(id <NSFetchedResultsSectionInfo>)sectionInfo
-           atIndex:(NSUInteger)sectionIndex forChangeType:(NSFetchedResultsChangeType)type
-{
-    switch(type) {
-        case NSFetchedResultsChangeInsert:
-            [self.tableView insertSections:[NSIndexSet indexSetWithIndex:sectionIndex] withRowAnimation:UITableViewRowAnimationFade];
-            break;
-            
-        case NSFetchedResultsChangeDelete:
-            [self.tableView deleteSections:[NSIndexSet indexSetWithIndex:sectionIndex] withRowAnimation:UITableViewRowAnimationFade];
-            break;
-            
-        default:
-            return;
-    }
-}
-
-- (void)controller:(NSFetchedResultsController *)controller didChangeObject:(id)anObject
-       atIndexPath:(NSIndexPath *)indexPath forChangeType:(NSFetchedResultsChangeType)type
-      newIndexPath:(NSIndexPath *)newIndexPath
-{
-    UITableView *tableView = self.tableView;
-    
-    switch(type) {
-        case NSFetchedResultsChangeInsert:
-            [tableView insertRowsAtIndexPaths:@[newIndexPath] withRowAnimation:UITableViewRowAnimationFade];
-            break;
-            
-        case NSFetchedResultsChangeDelete:
-            [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-            break;
-            
-        case NSFetchedResultsChangeUpdate:
-            [self configureCell:[tableView cellForRowAtIndexPath:indexPath] withObject:anObject];
-            break;
-            
-        case NSFetchedResultsChangeMove:
-            [tableView moveRowAtIndexPath:indexPath toIndexPath:newIndexPath];
-            break;
-    }
-}
-
-- (void)controllerDidChangeContent:(NSFetchedResultsController *)controller
-{
-    [self.tableView endUpdates];
-}
-
-/*
-// Implementing the above methods to update the table view in response to individual changes may have performance implications if a large number of changes are made simultaneously. If this proves to be an issue, you can instead just implement controllerDidChangeContent: which notifies the delegate that all section and object changes have been processed. 
- 
- - (void)controllerDidChangeContent:(NSFetchedResultsController *)controller
-{
-    // In the simplest, most efficient, case, reload the table view.
-    [self.tableView reloadData];
-}
- */
 
 @end

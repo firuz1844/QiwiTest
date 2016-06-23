@@ -11,21 +11,23 @@
 
 
 @protocol RestHelperMappedObjectProtocol <NSObject>
+
+@optional
 + (NSArray*)identificationAttributes;
 @required
 + (NSDictionary*)attributesKeyMap;
 @end
 
 
-@class Person, Balance, ResponseError;
+@class Person, Balance, ResponseObject;
 
 @interface RestHeper : NSObject
 
+// Getting models
 - (void)loadPersonsSuccess:(void (^)(NSArray *persons))success failure:(void (^)(NSError *error))failure;
-- (NSArray<Person*>*)fetchPersonsFromContext;
+- (void)loadBalanceForPerson:(Person*)person success:(void (^)(NSArray *balances))success failure:(void (^)(NSError *error))failure;
 
-- (void)loadBalanceSuccess:(void (^)(NSArray *balances))success failure:(void (^)(NSError *error))failure;
-
+- (NSArray<Person*>*)fetchPersonsFromContextError:(NSError**)error;
 
 #pragma mark - Core Data
 @property (readonly, strong, nonatomic) NSManagedObjectContext *managedObjectContext;

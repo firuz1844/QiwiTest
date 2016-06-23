@@ -7,11 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
-#import <CoreData/CoreData.h>
 
 @class BalanceViewController;
 
-@interface PersonsViewController : UITableViewController <NSFetchedResultsControllerDelegate>
+@interface PersonsViewController : UITableViewController
 
 @property (strong, nonatomic) BalanceViewController *balanceViewController;
 

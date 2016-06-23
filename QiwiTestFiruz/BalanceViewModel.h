@@ -7,7 +7,14 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "Balance.h"
 
 @interface BalanceViewModel : NSObject
+
+- (instancetype)initWithBalance:(Balance *)balance;
+
+@property (nonatomic, readonly) Balance *balance;
+
+@property (nonatomic, readonly) NSString *balanceString;
 
 @end

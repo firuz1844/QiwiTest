@@ -6,12 +6,12 @@
 //  Copyright © 2016 Firuz Narzikulov. All rights reserved.
 //
 
-#import "ResponseError.h"
+#import "ResponseObject.h"
 
-@implementation ResponseError
+@implementation ResponseObject
 
 + (NSDictionary *)attributesKeyMap {
-    return @{@"resultCode"  : @"result_code",
+    return @{@"result_code"  : @"resultCode",
              @"message"     : @"message"};
 }
 

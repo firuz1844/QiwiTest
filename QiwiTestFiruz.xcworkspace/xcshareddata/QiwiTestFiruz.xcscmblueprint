@@ -1,0 +1,30 @@
+{
+  "DVTSourceControlWorkspaceBlueprintPrimaryRemoteRepositoryKey" : "CE763D3FF221827B75DBECF0183A18CCC8DFFB3E",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyRepositoryLocationsKey" : {
+
+  },
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyStatesKey" : {
+    "CE763D3FF221827B75DBECF0183A18CCC8DFFB3E" : 0,
+    "980B6E5D56AA70A9AB65A0E5FF74CE1AD5BE02FF" : 0
+  },
+  "DVTSourceControlWorkspaceBlueprintIdentifierKey" : "37DC5D8A-D0D3-47C0-A478-A11059CA1E3E",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyPathsKey" : {
+    "CE763D3FF221827B75DBECF0183A18CCC8DFFB3E" : "QiwiTest\/",
+    "980B6E5D56AA70A9AB65A0E5FF74CE1AD5BE02FF" : ""
+  },
+  "DVTSourceControlWorkspaceBlueprintNameKey" : "QiwiTestFiruz",
+  "DVTSourceControlWorkspaceBlueprintVersion" : 204,
+  "DVTSourceControlWorkspaceBlueprintRelativePathToProjectKey" : "QiwiTestFiruz.xcworkspace",
+  "DVTSourceControlWorkspaceBlueprintRemoteRepositoriesKey" : [
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "bitbucket.org:firuz1844\/bahaipanel.ru.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "980B6E5D56AA70A9AB65A0E5FF74CE1AD5BE02FF"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/firuz1844\/QiwiTest.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "CE763D3FF221827B75DBECF0183A18CCC8DFFB3E"
+    }
+  ]
+}

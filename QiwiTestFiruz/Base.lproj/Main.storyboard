@@ -47,6 +47,9 @@
                     </view>
                     <toolbarItems/>
                     <navigationItem key="navigationItem" title="Balance" id="mOI-FS-AaM"/>
+                    <connections>
+                        <outlet property="tableView" destination="q77-D2-rUr" id="8LO-tn-Aef"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="FJe-Yq-33r" sceneMemberID="firstResponder"/>
             </objects>

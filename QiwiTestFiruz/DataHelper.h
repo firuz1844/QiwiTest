@@ -10,6 +10,7 @@
 #import <CoreData/CoreData.h>
 
 @class RestHeper;
+@class PersonViewModel, BalanceViewModel, Person;
 
 @interface DataHelper : NSObject
 
@@ -17,7 +18,8 @@
 
 @property (strong, nonatomic, readonly) NSFetchedResultsController *fetchedResultsController;
 
-- (void)getPersonsSuccess:(void (^)(NSArray *persons))success failure:(void (^)(NSError *error))failure;
-- (void)getBalanceSuccess:(void (^)(NSArray *balances))success failure:(void (^)(NSError *error))failure;
+// Getting view models
+- (void)getPersonsSuccess:(void (^)(NSArray<PersonViewModel*> *persons))success failure:(void (^)(NSError *error))failure;
+- (void)getBalanceForPerson:(Person*)person success:(void (^)(NSArray<BalanceViewModel*> *balances))success failure:(void (^)(NSError *error))failure;
 
 @end

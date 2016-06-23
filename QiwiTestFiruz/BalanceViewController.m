@@ -7,8 +7,15 @@
 //
 
 #import "BalanceViewController.h"
+#import "DataHelper.h"
+#import "BalanceViewModel.h"
+
+#import "ReactiveCocoa.h"
 
 @interface BalanceViewController ()
+
+@property (weak, nonatomic) IBOutlet UITableView *tableView;
+@property (strong, nonatomic) NSArray *balances;
 
 @end
 
@@ -16,31 +23,56 @@
 
 #pragma mark - Managing the detail item
 
-- (void)setDetailItem:(id)newDetailItem {
-    if (_detailItem != newDetailItem) {
-        _detailItem = newDetailItem;
-            
-        // Update the view.
-        [self configureView];
+- (void)setPerson:(PersonViewModel*)person {
+    if (_person != person) {
+        _person = person;
+        self.navigationItem.title = person.nameText;
     }
 }
 
-- (void)configureView {
-    // Update the user interface for the detail item.
-    if (self.detailItem) {
-        self.detailDescriptionLabel.text = [[self.detailItem valueForKey:@"timeStamp"] description];
-    }
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    return self.balances.count;
 }
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell" forIndexPath:indexPath];
+    BalanceViewModel *object = [self.balances objectAtIndex:indexPath.row];
+    [self configureCell:cell withObject:object];
+    return cell;
+}
+
+- (void)configureCell:(UITableViewCell *)cell withObject:(BalanceViewModel *)object {
+    cell.textLabel.text = object.balanceString;
+}
+
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view, typically from a nib.
-    [self configureView];
+    
+    UIRefreshControl *refreshControl = [[UIRefreshControl alloc] init];
+    [refreshControl addTarget:self action:@selector(refresh:) forControlEvents:UIControlEventValueChanged];
+    [self.tableView addSubview:refreshControl];
+}
+
+- (void)refresh:(UIRefreshControl *)refreshControl {
+ 
+    @weakify(self)
+    [[DataHelper shared] getBalanceForPerson:self.person.person success:^(NSArray<BalanceViewModel *> *balances) {
+        @strongify(self)
+        self.balances = balances;
+        dispatch_async(dispatch_get_main_queue(), ^{
+            @strongify(self)
+            [self.tableView reloadData];
+        });
+        [refreshControl endRefreshing];
+    } failure:^(NSError *error) {
+        NSLog(@"%@", error);
+        [refreshControl endRefreshing];
+    }];
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
 
 @end

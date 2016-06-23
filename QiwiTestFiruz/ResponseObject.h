@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 #import "RestHeper.h"
 
-@interface ResponseError : NSObject <RestHelperMappedObjectProtocol>
+@interface ResponseObject : NSObject <RestHelperMappedObjectProtocol>
 
 @property (nonatomic, assign) NSInteger resultCode;
 @property (nonatomic, strong) NSString *message;

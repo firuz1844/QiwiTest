@@ -11,6 +11,7 @@
 
 #import "Person.h"
 #import "RestHeper.h"
+#import "Balance.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -18,6 +19,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (nullable, nonatomic, retain) NSNumber *id;
 @property (nullable, nonatomic, retain) NSString *name;
+
+@property (nullable, nonatomic, retain) Balance *balance;
 
 @end
 

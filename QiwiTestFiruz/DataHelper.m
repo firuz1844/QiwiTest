@@ -7,9 +7,14 @@
 //
 
 #import "DataHelper.h"
-#import "Person.h"
-#import "Balance.h"
 #import "RestHeper.h"
+
+#import "Person.h"
+#import "PersonViewModel.h"
+#import "Balance.h"
+#import "BalanceViewModel.h"
+
+#import "NSArray+Mapper.h"
 
 @interface DataHelper()
 
@@ -38,26 +43,45 @@ static DataHelper *dataHelperInstance = nil;
     return dataHelperInstance;
 }
 
-- (void)getPersonsSuccess:(void (^)(NSArray *persons))success failure:(void (^)(NSError *error))failure {
-    NSArray *persons = [self.restHelper fetchPersonsFromContext];
+- (void)getPersonsSuccess:(void (^)(NSArray<PersonViewModel*> *persons))success failure:(void (^)(NSError *error))failure {
+    NSError *error;
+    NSArray *persons = [self.restHelper fetchPersonsFromContextError:&error];
     if (persons) {
-        success(persons);
+        success([self personViewModelsWithArray:persons]);
     } else {
         [self.restHelper loadPersonsSuccess:^(NSArray *persons) {
-            success(persons);
+            success([self personViewModelsWithArray:persons]);
         } failure:^(NSError *error) {
             failure(error);
         }];
     }
+    NSLog(@"%@", error);
 }
 
-- (void)getBalanceSuccess:(void (^)(NSArray *balances))success failure:(void (^)(NSError *error))failure {
-    [self.restHelper loadBalanceSuccess:^(NSArray *balances) {
-        success(balances);
+- (void)getBalanceForPerson:(Person*)person success:(void (^)(NSArray<BalanceViewModel*> *balances))success failure:(void (^)(NSError *error))failure {
+    [self.restHelper loadBalanceForPerson:person success:^(NSArray *balances) {
+        success([self balanceViewModelsWithArray:balances]);
     } failure:^(NSError *error) {
         failure(error);
     }];
 }
+
+- (NSArray*)personViewModelsWithArray:(NSArray*)array {
+    NSArray *viewModels = [array mapWithBlock:^id(id model) {
+        PersonViewModel *viewModel = [[PersonViewModel alloc] initWithPerson:model];
+        return viewModel;
+    }];
+    return viewModels;
+}
+
+- (NSArray*)balanceViewModelsWithArray:(NSArray*)array {
+    NSArray *viewModels = [array mapWithBlock:^id(id model) {
+        BalanceViewModel *viewModel = [[BalanceViewModel alloc] initWithBalance:model];
+        return viewModel;
+    }];
+    return viewModels;
+}
+
 
 #pragma mark - Fetched results controller
 

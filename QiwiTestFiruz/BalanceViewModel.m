@@ -10,4 +10,14 @@
 
 @implementation BalanceViewModel
 
+- (instancetype)initWithBalance:(Balance*)balance {
+    
+    self = [super init];
+    if (self) {
+        _balance = balance;
+        _balanceString = [NSString stringWithFormat:@"%@ - %@", balance.amount, balance.currency];
+    }
+    return self;
+}
+
 @end
