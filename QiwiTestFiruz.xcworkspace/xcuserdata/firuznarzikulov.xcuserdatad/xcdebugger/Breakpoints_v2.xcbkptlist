@@ -52,11 +52,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "QiwiTestFiruz/RestHeper.m"
-            timestampString = "488412217.135607"
+            timestampString = "488413115.337147"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "146"
-            endingLineNumber = "146"
+            startingLineNumber = "145"
+            endingLineNumber = "145"
             landmarkName = "-loadBalanceForPerson:completion:"
             landmarkType = "5">
             <Locations>
@@ -68,12 +68,12 @@
                   moduleName = "QiwiTestFiruz"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/firuznarzikulov/Repositories/QiwiTest/QiwiTestFiruz/RestHeper.m"
-                  timestampString = "488412217.249299"
+                  timestampString = "488413115.801837"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "147"
-                  endingLineNumber = "147"
-                  offsetFromSymbolStart = "339">
+                  startingLineNumber = "145"
+                  endingLineNumber = "145"
+                  offsetFromSymbolStart = "262">
                </Location>
                <Location
                   shouldBeEnabled = "Yes"
@@ -83,11 +83,11 @@
                   moduleName = "QiwiTestFiruz"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/firuznarzikulov/Repositories/QiwiTest/QiwiTestFiruz/RestHeper.m"
-                  timestampString = "488412217.24942"
+                  timestampString = "488413115.801988"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "147"
-                  endingLineNumber = "147"
+                  startingLineNumber = "145"
+                  endingLineNumber = "145"
                   offsetFromSymbolStart = "23">
                </Location>
             </Locations>
@@ -99,13 +99,13 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "QiwiTestFiruz/RestHeper.m"
-            timestampString = "488412217.135607"
+            filePath = "Pods/RestKit/Code/Network/RKObjectManager.m"
+            timestampString = "488412611.285427"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "145"
-            endingLineNumber = "145"
-            landmarkName = "-loadBalanceForPerson:completion:"
+            startingLineNumber = "754"
+            endingLineNumber = "754"
+            landmarkName = "-getObjectsAtPath:parameters:success:failure:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -115,13 +115,29 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "QiwiTestFiruz/RestHeper.m"
-            timestampString = "488412277.863333"
+            filePath = "Pods/RestKit/Code/Network/RKObjectManager.m"
+            timestampString = "488412745.48117"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "148"
-            endingLineNumber = "148"
-            landmarkName = "-loadBalanceForPerson:completion:"
+            startingLineNumber = "592"
+            endingLineNumber = "592"
+            landmarkName = "-objectRequestOperationWithRequest:responseDescriptors:success:failure:"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Pods/RestKit/Code/Network/RKObjectManager.m"
+            timestampString = "488412755.355647"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "616"
+            endingLineNumber = "616"
+            landmarkName = "-managedObjectRequestOperationWithRequest:responseDescriptors:managedObjectContext:success:failure:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>

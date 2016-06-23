@@ -17,7 +17,7 @@
 static NSString * const kBaseUrl = @"https://w.qiwi.com";
 static NSString * const kPersonsPath = @"/mobile/testtask/index.json";
 static NSString * const kPersonsKeyPath = @"users";
-static NSString * const kBalancePath = @"/mobile/testtask/users/:id/index.json";
+static NSString * const kBalancePath = @"/mobile/testtask/users/%@/index.json";
 static NSString * const kBalanceKeyPath = @"balances";
 
 
@@ -96,7 +96,7 @@ static NSString * const kBalanceKeyPath = @"balances";
     
     [self.objectManager addResponseDescriptor:descriptor];
     
-    descriptor =
+    RKResponseDescriptor *descriptor1 =
     [RKResponseDescriptor responseDescriptorWithMapping:balanceMapping
                                                  method:RKRequestMethodGET
                                             pathPattern:kBalancePath
@@ -105,9 +105,9 @@ static NSString * const kBalanceKeyPath = @"balances";
      ];
     
     
-    [self.objectManager addResponseDescriptor:descriptor];
+    [self.objectManager addResponseDescriptor:descriptor1];
     
-    descriptor =
+    RKResponseDescriptor *descriptor2 =
     [RKResponseDescriptor responseDescriptorWithMapping:responseMapping
                                                  method:RKRequestMethodGET
                                             pathPattern:nil
@@ -115,7 +115,7 @@ static NSString * const kBalanceKeyPath = @"balances";
                                             statusCodes:RKStatusCodeIndexSetForClass(RKStatusCodeClassSuccessful)
      ];
     
-    [self.objectManager addResponseDescriptor:descriptor];
+    [self.objectManager addResponseDescriptor:descriptor2];
     
     
     [AFNetworkActivityIndicatorManager sharedManager].enabled = YES;
@@ -140,9 +140,7 @@ static NSString * const kBalanceKeyPath = @"balances";
 }
 
 - (void)loadBalanceForPerson:(Person*)person completion:(void (^)(void))completion {
-    NSString *path = [kBalancePath stringByReplacingOccurrencesOfString:@":d" withString:[NSString stringWithFormat:@"%d", person.id]];
-    
-    [[RKObjectManager sharedManager] getObjectsAtPath:path
+    [[RKObjectManager sharedManager] getObjectsAtPath:[NSString stringWithFormat:kBalancePath, person.id]
                                            parameters:nil
                                               success:^(RKObjectRequestOperation *operation, RKMappingResult *mappingResult) {
                                                   completion();
