@@ -13,6 +13,7 @@
 
 #import "Person.h"
 #import "Balance.h"
+#import "ResponseObject.h"
 
 static NSString * const kBaseUrl = @"https://w.qiwi.com";
 static NSString * const kPersonsPath = @"/mobile/testtask/index.json";
@@ -80,34 +81,34 @@ static NSString * const kBalanceKeyPath = @"balances";
     
     
     RKEntityMapping *balanceMapping = [RKEntityMapping mappingForEntityForName:@"Balance" inManagedObjectStore:managedObjectStore];
-    [personMapping addAttributeMappingsFromDictionary:[Balance attributesKeyMap]];
+    [balanceMapping addAttributeMappingsFromDictionary:[Balance attributesKeyMap]];
     
     RKEntityMapping *responseMapping = [RKEntityMapping mappingForEntityForName:@"ResponseObject" inManagedObjectStore:managedObjectStore];
-    [responseMapping addAttributeMappingsFromDictionary:[Balance attributesKeyMap]];
+    [responseMapping addAttributeMappingsFromDictionary:[ResponseObject attributesKeyMap]];
     
     
     RKResponseDescriptor *descriptor =
     [RKResponseDescriptor responseDescriptorWithMapping:personMapping
                                                  method:RKRequestMethodGET
-                                            pathPattern:kPersonsPath
+                                            pathPattern:nil
                                                 keyPath:kPersonsKeyPath
                                             statusCodes:RKStatusCodeIndexSetForClass(RKStatusCodeClassSuccessful)
      ];
     
     [self.objectManager addResponseDescriptor:descriptor];
     
-    RKResponseDescriptor *descriptor1 =
+    descriptor =
     [RKResponseDescriptor responseDescriptorWithMapping:balanceMapping
                                                  method:RKRequestMethodGET
-                                            pathPattern:kBalancePath
+                                            pathPattern:nil
                                                 keyPath:kBalanceKeyPath
                                             statusCodes:RKStatusCodeIndexSetForClass(RKStatusCodeClassSuccessful)
      ];
     
     
-    [self.objectManager addResponseDescriptor:descriptor1];
+    [self.objectManager addResponseDescriptor:descriptor];
     
-    RKResponseDescriptor *descriptor2 =
+    descriptor =
     [RKResponseDescriptor responseDescriptorWithMapping:responseMapping
                                                  method:RKRequestMethodGET
                                             pathPattern:nil
@@ -115,40 +116,39 @@ static NSString * const kBalanceKeyPath = @"balances";
                                             statusCodes:RKStatusCodeIndexSetForClass(RKStatusCodeClassSuccessful)
      ];
     
-    [self.objectManager addResponseDescriptor:descriptor2];
+    [self.objectManager addResponseDescriptor:descriptor];
     
     
     [AFNetworkActivityIndicatorManager sharedManager].enabled = YES;
 }
 
-- (void)loadPersons:(void (^)(void))completion {
+- (void)loadPersons:(void (^)(ResponseObject *response, NSError *error))completion {
     
     [[RKObjectManager sharedManager] getObjectsAtPath:kPersonsPath
                                            parameters:nil
                                               success:^(RKObjectRequestOperation *operation, RKMappingResult *mappingResult) {
-                                                  RKManagedObjectRequestOperation *moperation = (RKManagedObjectRequestOperation*)operation;
-                                                  NSError *error;
-                                                  [moperation.managedObjectContext saveToPersistentStore:&error];
-                                                  if (error) {
-                                                      NSLog(@"Error saving context %@", error);
-                                                  }
-                                                  completion();
+                                                  completion([self responseFromMappingResult:mappingResult], nil);
                                               } failure:^(RKObjectRequestOperation *operation, NSError *error) {
                                                   NSLog(@"Failed loading persons %@", error);
-                                                  completion();
+                                                  completion(nil, error);
                                               }];
 }
 
-- (void)loadBalanceForPerson:(Person*)person completion:(void (^)(void))completion {
+- (void)loadBalanceForPerson:(Person*)person completion:(void (^)(ResponseObject *response, NSError *error))completion {
     [[RKObjectManager sharedManager] getObjectsAtPath:[NSString stringWithFormat:kBalancePath, person.id]
                                            parameters:nil
                                               success:^(RKObjectRequestOperation *operation, RKMappingResult *mappingResult) {
-                                                  completion();
+                                                  completion([self responseFromMappingResult:mappingResult], nil);
                                               } failure:^(RKObjectRequestOperation *operation, NSError *error) {
                                                   NSLog(@"Error geting balances %@", error);
-                                                  completion();
+                                                  completion(nil, error);
                                               }];
     
+}
+
+- (ResponseObject*)responseFromMappingResult:(RKMappingResult*)result {
+    ResponseObject *obj = [[[result array] filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"class == %@", [ResponseObject class]]] firstObject];
+    return obj;
 }
 
 - (NSManagedObjectContext *)managedObjectContext {

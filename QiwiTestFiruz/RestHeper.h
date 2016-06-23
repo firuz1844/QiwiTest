@@ -24,8 +24,8 @@
 @interface RestHeper : NSObject
 
 // Getting models
-- (void)loadPersons:(void (^)(void))completion;
-- (void)loadBalanceForPerson:(Person*)person completion:(void (^)(void))completion;
+- (void)loadPersons:(void (^)(ResponseObject *response, NSError *error))completion;
+- (void)loadBalanceForPerson:(Person*)person completion:(void (^)(ResponseObject *response, NSError *error))completion;
 
 #pragma mark - Core Data
 @property (readonly, strong, nonatomic) NSManagedObjectContext *managedObjectContext;

@@ -43,11 +43,25 @@ static DataHelper *dataHelperInstance = nil;
 }
 
 - (void)updatePersons:(void (^)(void))completion {
-    [self.restHelper loadPersons:completion];
+    [self.restHelper loadPersons:^(ResponseObject *response, NSError *error) {
+        if (!error) {
+            NSLog(@"%@", response);
+        } else {
+            NSLog(@"%@", error);
+        }
+        completion();
+    }];
 }
 
 - (void)loadBalanceForPerson:(Person*)person completion:(void (^)(void))completion {
-    [self.restHelper loadBalanceForPerson:person completion:completion];
+    [self.restHelper loadBalanceForPerson:person completion:^(ResponseObject *response, NSError *error) {
+        if (!error) {
+            NSLog(@"%@", response);
+        } else {
+            NSLog(@"%@", error);
+        }
+        completion();
+    }];
 }
 
 - (NSArray*)personViewModelsWithArray:(NSArray*)array {
