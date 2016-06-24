@@ -10,15 +10,15 @@
 #import <CoreData/CoreData.h>
 
 @class RestHeper;
-@class PersonViewModel, BalanceViewModel, Person;
+@class PersonViewModel, BalanceViewModel, Person, ResponseObject;
 
 @interface DataHelper : NSObject
 
 + (instancetype)shared;
 
 // Getting view models
-- (void)updatePersons:(void (^)(void))completion;
-- (void)loadBalanceForPerson:(Person*)person completion:(void (^)(void))completion;
+- (void)updatePersons:(void (^)(ResponseObject *response))completion;
+- (void)loadBalanceForPerson:(Person*)person completion:(void (^)(ResponseObject *response))completion;
 
 
 - (NSFetchedResultsController*)fetchedResultsControllerWithFetchRequest:(NSFetchRequest*)fetchRequest;

@@ -12,6 +12,8 @@
 
 #import "ReactiveCocoa.h"
 
+#import "AlertHelper.h"
+
 @interface BalanceViewController () <NSFetchedResultsControllerDelegate>
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
@@ -33,7 +35,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
+        
     UIRefreshControl *refreshControl = [[UIRefreshControl alloc] init];
     [refreshControl addTarget:self action:@selector(refresh:) forControlEvents:UIControlEventValueChanged];
     [self.tableView addSubview:refreshControl];
@@ -46,11 +48,14 @@
     NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"currency" ascending:NO];
     NSArray *sortDescriptors = @[sortDescriptor];
     
+    [fetchRequest setPredicate:[NSPredicate predicateWithFormat:@"userId == %@", self.person.person.userId]];
     [fetchRequest setSortDescriptors:sortDescriptors];
 
     
     self.fetchedResultsController = [[DataHelper shared] fetchedResultsControllerWithFetchRequest:fetchRequest];
     self.fetchedResultsController.delegate = self;
+    
+    [self loadData:nil];
     
 }
 
@@ -63,9 +68,21 @@
 }
 
 - (void)loadData:(void (^)(void))completion {
-    [[DataHelper shared] loadBalanceForPerson:self.person.person completion:completion];
+    @weakify(self)
+    [[DataHelper shared] loadBalanceForPerson:self.person.person completion:^(ResponseObject *response) {
+        @strongify(self)
+        UIAlertController *alert = [AlertHelper alertControllerWith:response retryAction:^{
+            @strongify(self)
+            [self loadData:nil];
+        }];
+        if (alert) [self presentViewController:alert animated:YES completion:nil];
+        if (completion) completion();
+    }];
 }
 
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+    return 1;
+}
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     id <NSFetchedResultsSectionInfo> sectionInfo = [self.fetchedResultsController.sections objectAtIndex:section];

@@ -13,16 +13,16 @@
 
 @implementation Person (CoreDataProperties)
 
-@dynamic id;
+@dynamic userId;
 @dynamic name;
 
 + (NSDictionary *)attributesKeyMap {
-    return @{@"id"      : @"id",
+    return @{@"id"      : @"userId",
              @"name"    : @"name"};
 }
 
 + (NSArray *)identificationAttributes {
-    return @[@"id"];
+    return @[@"userId"];
 }
 
 @end

@@ -42,26 +42,43 @@ static DataHelper *dataHelperInstance = nil;
     return dataHelperInstance;
 }
 
-- (void)updatePersons:(void (^)(void))completion {
+- (void)updatePersons:(void (^)(ResponseObject *response))completion {
     [self.restHelper loadPersons:^(ResponseObject *response, NSError *error) {
         if (!error) {
             NSLog(@"%@", response);
         } else {
             NSLog(@"%@", error);
         }
-        completion();
+        if(completion) completion(response);
     }];
 }
 
-- (void)loadBalanceForPerson:(Person*)person completion:(void (^)(void))completion {
+- (void)loadBalanceForPerson:(Person*)person completion:(void (^)(ResponseObject *response))completion {
+    [self clearBalances];
     [self.restHelper loadBalanceForPerson:person completion:^(ResponseObject *response, NSError *error) {
         if (!error) {
             NSLog(@"%@", response);
         } else {
             NSLog(@"%@", error);
         }
-        completion();
+        if(completion) completion(response);
     }];
+}
+
+- (void)clearBalances{
+    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
+    [fetchRequest setEntity:[NSEntityDescription entityForName:@"Balance" inManagedObjectContext:self.restHelper.managedObjectContext]];
+    [fetchRequest setIncludesPropertyValues:NO];
+    
+    NSError *error = nil;
+    NSArray *objects = [self.restHelper.managedObjectContext executeFetchRequest:fetchRequest error:&error];
+    
+    //error handling goes here
+    for (NSManagedObject *object in objects) {
+        [self.restHelper.managedObjectContext deleteObject:object];
+    }
+    NSError *saveError = nil;
+    [self.restHelper.managedObjectContext save:&saveError];
 }
 
 - (NSArray*)personViewModelsWithArray:(NSArray*)array {

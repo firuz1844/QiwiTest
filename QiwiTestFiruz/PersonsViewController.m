@@ -36,22 +36,27 @@
     
     [fetchRequest setFetchBatchSize:20];
     
-    NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"id" ascending:NO];
+    NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"userId" ascending:NO];
     NSArray *sortDescriptors = @[sortDescriptor];
     
     [fetchRequest setSortDescriptors:sortDescriptors];
     
     self.fetchedResultsController = [[DataHelper shared] fetchedResultsControllerWithFetchRequest:fetchRequest];
     self.fetchedResultsController.delegate = self;
+    
+    [self updateDataCompletion:nil];
 }
 
 - (void)refresh:(UIRefreshControl *)refreshControl {
-    [self updateData];
+    [self updateDataCompletion:^{
+        [refreshControl endRefreshing];
+    }];
 }
 
-- (void)updateData {
-    [[DataHelper shared] updatePersons:^{
-        [self.refreshControl endRefreshing];
+- (void)updateDataCompletion:(void(^)(void))completion {
+    [[DataHelper shared] updatePersons:^(ResponseObject *response) {
+        
+        if (completion) completion();
     }];
 }
 

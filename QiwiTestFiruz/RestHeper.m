@@ -15,6 +15,8 @@
 #import "Balance.h"
 #import "ResponseObject.h"
 
+#import "NSArray+Mapper.h"
+
 static NSString * const kBaseUrl = @"https://w.qiwi.com";
 static NSString * const kPersonsPath = @"/mobile/testtask/index.json";
 static NSString * const kPersonsKeyPath = @"users";
@@ -82,6 +84,7 @@ static NSString * const kBalanceKeyPath = @"balances";
     
     RKEntityMapping *balanceMapping = [RKEntityMapping mappingForEntityForName:@"Balance" inManagedObjectStore:managedObjectStore];
     [balanceMapping addAttributeMappingsFromDictionary:[Balance attributesKeyMap]];
+
     
     RKEntityMapping *responseMapping = [RKEntityMapping mappingForEntityForName:@"ResponseObject" inManagedObjectStore:managedObjectStore];
     [responseMapping addAttributeMappingsFromDictionary:[ResponseObject attributesKeyMap]];
@@ -135,9 +138,15 @@ static NSString * const kBalanceKeyPath = @"balances";
 }
 
 - (void)loadBalanceForPerson:(Person*)person completion:(void (^)(ResponseObject *response, NSError *error))completion {
-    [[RKObjectManager sharedManager] getObjectsAtPath:[NSString stringWithFormat:kBalancePath, person.id]
+    [[RKObjectManager sharedManager] getObjectsAtPath:[NSString stringWithFormat:kBalancePath, person.userId]
                                            parameters:nil
                                               success:^(RKObjectRequestOperation *operation, RKMappingResult *mappingResult) {
+                                                  [[mappingResult array] mapWithBlock:^id(id model) {
+                                                      if ([model isKindOfClass:[Balance class]]) {
+                                                          [(Balance*)model setUserId:person.userId];
+                                                      }
+                                                      return model;
+                                                  }];
                                                   completion([self responseFromMappingResult:mappingResult], nil);
                                               } failure:^(RKObjectRequestOperation *operation, NSError *error) {
                                                   NSLog(@"Error geting balances %@", error);
@@ -147,7 +156,7 @@ static NSString * const kBalanceKeyPath = @"balances";
 }
 
 - (ResponseObject*)responseFromMappingResult:(RKMappingResult*)result {
-    ResponseObject *obj = [[[result array] filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"class == %@", [ResponseObject class]]] firstObject];
+    ResponseObject *obj = [[[result array] filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"class == %@ && self.code != 0", [ResponseObject class]]] firstObject];
     return obj;
 }
 

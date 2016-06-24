@@ -15,6 +15,7 @@
 
 @dynamic amount;
 @dynamic currency;
+@dynamic userId;
 
 + (NSDictionary *)attributesKeyMap {
     return @{@"currency"    : @"currency",

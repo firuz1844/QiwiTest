@@ -26,6 +26,7 @@
 		9AE891A31D1C8EEF00B37FE8 /* Person.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AE891A11D1C8EEF00B37FE8 /* Person.m */; };
 		9AE891AB1D1C904800B37FE8 /* ResponseObject+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AE891A81D1C904800B37FE8 /* ResponseObject+CoreDataProperties.m */; };
 		9AE891AC1D1C904800B37FE8 /* ResponseObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AE891AA1D1C904800B37FE8 /* ResponseObject.m */; };
+		9AE891AF1D1DC8F900B37FE8 /* AlertHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AE891AE1D1DC8F900B37FE8 /* AlertHelper.m */; };
 		C983899CFFAC526014B24D51 /* libPods-QiwiTestFiruz.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 09BAB71A2047033C74B1308E /* libPods-QiwiTestFiruz.a */; };
 /* End PBXBuildFile section */
 
@@ -67,6 +68,8 @@
 		9AE891A81D1C904800B37FE8 /* ResponseObject+CoreDataProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "ResponseObject+CoreDataProperties.m"; sourceTree = "<group>"; };
 		9AE891A91D1C904800B37FE8 /* ResponseObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ResponseObject.h; sourceTree = "<group>"; };
 		9AE891AA1D1C904800B37FE8 /* ResponseObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ResponseObject.m; sourceTree = "<group>"; };
+		9AE891AD1D1DC8F900B37FE8 /* AlertHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AlertHelper.h; sourceTree = "<group>"; };
+		9AE891AE1D1DC8F900B37FE8 /* AlertHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AlertHelper.m; sourceTree = "<group>"; };
 		A4F566DD51F7FB8DEBBC35E2 /* Pods-QiwiTestFiruz.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-QiwiTestFiruz.release.xcconfig"; path = "Pods/Target Support Files/Pods-QiwiTestFiruz/Pods-QiwiTestFiruz.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -136,6 +139,8 @@
 		9AB450A71D1B0DB200079840 /* Network&Storage */ = {
 			isa = PBXGroup;
 			children = (
+				9AB450BB1D1B13AE00079840 /* DataHelper.h */,
+				9AB450BC1D1B13AE00079840 /* DataHelper.m */,
 				9AB450A41D1B0DAE00079840 /* RestHeper.h */,
 				9AB450A51D1B0DAE00079840 /* RestHeper.m */,
 			);
@@ -147,6 +152,8 @@
 			children = (
 				9AB450AD1D1B0F2A00079840 /* ViewModels */,
 				9A4209521D1B0992002D4353 /* ViewControllers */,
+				9AE891AD1D1DC8F900B37FE8 /* AlertHelper.h */,
+				9AE891AE1D1DC8F900B37FE8 /* AlertHelper.m */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -188,8 +195,6 @@
 				9AE891991D1C8E8A00B37FE8 /* Balance+CoreDataProperties.m */,
 				9AE8919A1D1C8E8A00B37FE8 /* Balance.h */,
 				9AE8919B1D1C8E8A00B37FE8 /* Balance.m */,
-				9AB450BB1D1B13AE00079840 /* DataHelper.h */,
-				9AB450BC1D1B13AE00079840 /* DataHelper.m */,
 				9A42093B1D1B0640002D4353 /* QiwiTestFiruz.xcdatamodeld */,
 				9A7593421D1B376900C3A8FE /* NSArray+Mapper.h */,
 				9A7593431D1B376900C3A8FE /* NSArray+Mapper.m */,
@@ -346,6 +351,7 @@
 				9A7593441D1B376900C3A8FE /* NSArray+Mapper.m in Sources */,
 				9AE8919D1D1C8E8A00B37FE8 /* Balance.m in Sources */,
 				9AB450BA1D1B122000079840 /* BalanceViewModel.m in Sources */,
+				9AE891AF1D1DC8F900B37FE8 /* AlertHelper.m in Sources */,
 				9AB450BD1D1B13AE00079840 /* DataHelper.m in Sources */,
 				9A42093D1D1B0640002D4353 /* QiwiTestFiruz.xcdatamodeld in Sources */,
 				9AE891A31D1C8EEF00B37FE8 /* Person.m in Sources */,
@@ -465,6 +471,7 @@
 			baseConfigurationReference = 410111E03249651B22A401AC /* Pods-QiwiTestFiruz.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = "Brand Assets";
 				INFOPLIST_FILE = QiwiTestFiruz/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -479,6 +486,7 @@
 			baseConfigurationReference = A4F566DD51F7FB8DEBBC35E2 /* Pods-QiwiTestFiruz.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = "Brand Assets";
 				INFOPLIST_FILE = QiwiTestFiruz/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";

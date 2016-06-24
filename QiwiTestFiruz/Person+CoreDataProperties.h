@@ -17,7 +17,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface Person (CoreDataProperties) <RestHelperMappedObjectProtocol>
 
-@property (nullable, nonatomic, retain) NSNumber *id;
+@property (nullable, nonatomic, retain) NSNumber *userId;
 @property (nullable, nonatomic, retain) NSString *name;
 
 @end

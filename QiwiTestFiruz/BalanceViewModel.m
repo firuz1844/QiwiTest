@@ -15,7 +15,13 @@
     self = [super init];
     if (self) {
         _balance = balance;
-        _balanceString = [NSString stringWithFormat:@"%@ - %@", balance.amount, balance.currency];
+
+        NSNumberFormatter *formatter = [[NSNumberFormatter alloc] init];
+        formatter.locale = [NSLocale currentLocale];
+        formatter.numberStyle = NSNumberFormatterCurrencyStyle;
+        [formatter setCurrencyCode:balance.currency];
+        
+        _balanceString = [NSString stringWithFormat:@"%@", [formatter stringFromNumber:balance.amount]];
     }
     return self;
 }
