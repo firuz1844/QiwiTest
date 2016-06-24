@@ -9,10 +9,9 @@
 #import "DataManager.h"
 #import "RestHelper.h"
 
-#import "Person.h"
 #import "PersonViewModel.h"
-#import "Balance.h"
 #import "BalanceViewModel.h"
+#import "ResponseObject.h"
 
 #import "NSArray+Mapper.h"
 
@@ -43,6 +42,7 @@ static DataManager *DataManagerInstance = nil;
 }
 
 - (void)updatePersons:(void (^)(ResponseObject *response))completion {
+    [self clearResponses];
     [self.restHelper loadPersons:^(ResponseObject *response, NSError *error) {
         if (!error) {
             NSLog(@"%@", response);
@@ -55,6 +55,7 @@ static DataManager *DataManagerInstance = nil;
 
 - (void)loadBalanceForPerson:(Person*)person completion:(void (^)(ResponseObject *response))completion {
     [self clearBalances];
+    [self clearResponses];
     [self.restHelper loadBalanceForPerson:person completion:^(ResponseObject *response, NSError *error) {
         if (!error) {
             NSLog(@"%@", response);
@@ -66,20 +67,27 @@ static DataManager *DataManagerInstance = nil;
 }
 
 - (void)clearBalances{
+    [self clearStoreForDataClass:[Balance class]];
+}
+
+- (void)clearResponses{
+    [self clearStoreForDataClass:[ResponseObject class]];
+}
+
+- (void)clearStoreForDataClass:(Class)class {
     NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
-    [fetchRequest setEntity:[NSEntityDescription entityForName:@"Balance" inManagedObjectContext:self.restHelper.managedObjectContext]];
+    [fetchRequest setEntity:[NSEntityDescription entityForName:NSStringFromClass(class) inManagedObjectContext:self.restHelper.managedObjectContext]];
     [fetchRequest setIncludesPropertyValues:NO];
     
     NSError *error = nil;
     NSArray *objects = [self.restHelper.managedObjectContext executeFetchRequest:fetchRequest error:&error];
     
-    //error handling goes here
     for (NSManagedObject *object in objects) {
         [self.restHelper.managedObjectContext deleteObject:object];
     }
-    NSError *saveError = nil;
-    [self.restHelper.managedObjectContext save:&saveError];
+
 }
+
 
 - (NSArray*)personViewModelsWithArray:(NSArray*)array {
     NSArray *viewModels = [array mapWithBlock:^id(id model) {
