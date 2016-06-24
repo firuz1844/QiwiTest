@@ -1,13 +1,13 @@
 //
-//  DataHelper.m
+//  DataManager.m
 //  QiwiTestFiruz
 //
 //  Created by Firuz Narzikulov on 22.06.16.
 //  Copyright © 2016 Firuz Narzikulov. All rights reserved.
 //
 
-#import "DataHelper.h"
-#import "RestHeper.h"
+#import "DataManager.h"
+#import "RestHelper.h"
 
 #import "Person.h"
 #import "PersonViewModel.h"
@@ -16,17 +16,17 @@
 
 #import "NSArray+Mapper.h"
 
-@interface DataHelper()
+@interface DataManager()
 
-@property (strong, nonatomic) RestHeper *restHelper;
+@property (strong, nonatomic) RestHelper *restHelper;
 
 @end
 
-@implementation DataHelper
+@implementation DataManager
 
-static DataHelper *dataHelperInstance = nil;
+static DataManager *DataManagerInstance = nil;
 
-- (instancetype)initWithRestHelper:(RestHeper *)restHelper {
+- (instancetype)initWithRestHelper:(RestHelper *)restHelper {
     self = [super init];
     if (self) {
         _restHelper = restHelper;
@@ -37,9 +37,9 @@ static DataHelper *dataHelperInstance = nil;
 + (instancetype)shared {
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
-        dataHelperInstance = [[self alloc] initWithRestHelper:[RestHeper new]];
+        DataManagerInstance = [[self alloc] initWithRestHelper:[RestHelper new]];
     });
-    return dataHelperInstance;
+    return DataManagerInstance;
 }
 
 - (void)updatePersons:(void (^)(ResponseObject *response))completion {

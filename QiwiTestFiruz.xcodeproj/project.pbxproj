@@ -16,10 +16,10 @@
 		9A4209481D1B0640002D4353 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9A4209471D1B0640002D4353 /* Assets.xcassets */; };
 		9A42094B1D1B0640002D4353 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9A4209491D1B0640002D4353 /* LaunchScreen.storyboard */; };
 		9A7593441D1B376900C3A8FE /* NSArray+Mapper.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A7593431D1B376900C3A8FE /* NSArray+Mapper.m */; };
-		9AB450A61D1B0DAE00079840 /* RestHeper.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AB450A51D1B0DAE00079840 /* RestHeper.m */; };
+		9AB450A61D1B0DAE00079840 /* RestHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AB450A51D1B0DAE00079840 /* RestHelper.m */; };
 		9AB450AC1D1B0F2400079840 /* PersonViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AB450AB1D1B0F2400079840 /* PersonViewModel.m */; };
 		9AB450BA1D1B122000079840 /* BalanceViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AB450B91D1B122000079840 /* BalanceViewModel.m */; };
-		9AB450BD1D1B13AE00079840 /* DataHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AB450BC1D1B13AE00079840 /* DataHelper.m */; };
+		9AB450BD1D1B13AE00079840 /* DataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AB450BC1D1B13AE00079840 /* DataManager.m */; };
 		9AE8919C1D1C8E8A00B37FE8 /* Balance+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AE891991D1C8E8A00B37FE8 /* Balance+CoreDataProperties.m */; };
 		9AE8919D1D1C8E8A00B37FE8 /* Balance.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AE8919B1D1C8E8A00B37FE8 /* Balance.m */; };
 		9AE891A21D1C8EEF00B37FE8 /* Person+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AE8919F1D1C8EEF00B37FE8 /* Person+CoreDataProperties.m */; };
@@ -41,21 +41,21 @@
 		9A42093E1D1B0640002D4353 /* PersonsViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PersonsViewController.h; sourceTree = "<group>"; };
 		9A42093F1D1B0640002D4353 /* PersonsViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PersonsViewController.m; sourceTree = "<group>"; };
 		9A4209411D1B0640002D4353 /* BalanceViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BalanceViewController.h; sourceTree = "<group>"; };
-		9A4209421D1B0640002D4353 /* BalanceViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BalanceViewController.m; sourceTree = "<group>"; };
+		9A4209421D1B0640002D4353 /* BalanceViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = BalanceViewController.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		9A4209451D1B0640002D4353 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		9A4209471D1B0640002D4353 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		9A42094A1D1B0640002D4353 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		9A42094C1D1B0640002D4353 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		9A7593421D1B376900C3A8FE /* NSArray+Mapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSArray+Mapper.h"; sourceTree = "<group>"; };
 		9A7593431D1B376900C3A8FE /* NSArray+Mapper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSArray+Mapper.m"; sourceTree = "<group>"; };
-		9AB450A41D1B0DAE00079840 /* RestHeper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RestHeper.h; sourceTree = "<group>"; };
-		9AB450A51D1B0DAE00079840 /* RestHeper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RestHeper.m; sourceTree = "<group>"; };
+		9AB450A41D1B0DAE00079840 /* RestHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RestHelper.h; sourceTree = "<group>"; };
+		9AB450A51D1B0DAE00079840 /* RestHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RestHelper.m; sourceTree = "<group>"; };
 		9AB450AA1D1B0F2400079840 /* PersonViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PersonViewModel.h; sourceTree = "<group>"; };
 		9AB450AB1D1B0F2400079840 /* PersonViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PersonViewModel.m; sourceTree = "<group>"; };
 		9AB450B81D1B122000079840 /* BalanceViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BalanceViewModel.h; sourceTree = "<group>"; };
 		9AB450B91D1B122000079840 /* BalanceViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BalanceViewModel.m; sourceTree = "<group>"; };
-		9AB450BB1D1B13AE00079840 /* DataHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DataHelper.h; sourceTree = "<group>"; };
-		9AB450BC1D1B13AE00079840 /* DataHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DataHelper.m; sourceTree = "<group>"; };
+		9AB450BB1D1B13AE00079840 /* DataManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = DataManager.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
+		9AB450BC1D1B13AE00079840 /* DataManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = DataManager.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		9AE891981D1C8E8A00B37FE8 /* Balance+CoreDataProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Balance+CoreDataProperties.h"; sourceTree = "<group>"; };
 		9AE891991D1C8E8A00B37FE8 /* Balance+CoreDataProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Balance+CoreDataProperties.m"; sourceTree = "<group>"; };
 		9AE8919A1D1C8E8A00B37FE8 /* Balance.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Balance.h; sourceTree = "<group>"; };
@@ -139,10 +139,10 @@
 		9AB450A71D1B0DB200079840 /* Network&Storage */ = {
 			isa = PBXGroup;
 			children = (
-				9AB450BB1D1B13AE00079840 /* DataHelper.h */,
-				9AB450BC1D1B13AE00079840 /* DataHelper.m */,
-				9AB450A41D1B0DAE00079840 /* RestHeper.h */,
-				9AB450A51D1B0DAE00079840 /* RestHeper.m */,
+				9AB450BB1D1B13AE00079840 /* DataManager.h */,
+				9AB450BC1D1B13AE00079840 /* DataManager.m */,
+				9AB450A41D1B0DAE00079840 /* RestHelper.h */,
+				9AB450A51D1B0DAE00079840 /* RestHelper.m */,
 			);
 			name = "Network&Storage";
 			sourceTree = "<group>";
@@ -345,14 +345,14 @@
 				9AE8919C1D1C8E8A00B37FE8 /* Balance+CoreDataProperties.m in Sources */,
 				9A4209401D1B0640002D4353 /* PersonsViewController.m in Sources */,
 				9AB450AC1D1B0F2400079840 /* PersonViewModel.m in Sources */,
-				9AB450A61D1B0DAE00079840 /* RestHeper.m in Sources */,
+				9AB450A61D1B0DAE00079840 /* RestHelper.m in Sources */,
 				9A42093A1D1B0640002D4353 /* AppDelegate.m in Sources */,
 				9AE891AB1D1C904800B37FE8 /* ResponseObject+CoreDataProperties.m in Sources */,
 				9A7593441D1B376900C3A8FE /* NSArray+Mapper.m in Sources */,
 				9AE8919D1D1C8E8A00B37FE8 /* Balance.m in Sources */,
 				9AB450BA1D1B122000079840 /* BalanceViewModel.m in Sources */,
 				9AE891AF1D1DC8F900B37FE8 /* AlertHelper.m in Sources */,
-				9AB450BD1D1B13AE00079840 /* DataHelper.m in Sources */,
+				9AB450BD1D1B13AE00079840 /* DataManager.m in Sources */,
 				9A42093D1D1B0640002D4353 /* QiwiTestFiruz.xcdatamodeld in Sources */,
 				9AE891A31D1C8EEF00B37FE8 /* Person.m in Sources */,
 				9AE891A21D1C8EEF00B37FE8 /* Person+CoreDataProperties.m in Sources */,

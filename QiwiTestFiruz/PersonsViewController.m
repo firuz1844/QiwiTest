@@ -9,7 +9,7 @@
 #import "PersonsViewController.h"
 #import "BalanceViewController.h"
 
-#import "DataHelper.h"
+#import "DataManager.h"
 #import "PersonViewModel.h"
 
 #import "ReactiveCocoa.h"
@@ -31,17 +31,17 @@
     [self.refreshControl addTarget:self action:@selector(refresh:) forControlEvents:UIControlEventValueChanged];
     
     NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
-    NSEntityDescription *entity = [NSEntityDescription entityForName:@"Person" inManagedObjectContext:[[DataHelper shared] defaultContext]];
+    NSEntityDescription *entity = [NSEntityDescription entityForName:@"Person" inManagedObjectContext:[[DataManager shared] defaultContext]];
     [fetchRequest setEntity:entity];
     
     [fetchRequest setFetchBatchSize:20];
     
-    NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"userId" ascending:NO];
+    NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"userId" ascending:YES];
     NSArray *sortDescriptors = @[sortDescriptor];
     
     [fetchRequest setSortDescriptors:sortDescriptors];
     
-    self.fetchedResultsController = [[DataHelper shared] fetchedResultsControllerWithFetchRequest:fetchRequest];
+    self.fetchedResultsController = [[DataManager shared] fetchedResultsControllerWithFetchRequest:fetchRequest];
     self.fetchedResultsController.delegate = self;
     
     [self updateDataCompletion:nil];
@@ -54,7 +54,7 @@
 }
 
 - (void)updateDataCompletion:(void(^)(void))completion {
-    [[DataHelper shared] updatePersons:^(ResponseObject *response) {
+    [[DataManager shared] updatePersons:^(ResponseObject *response) {
         
         if (completion) completion();
     }];

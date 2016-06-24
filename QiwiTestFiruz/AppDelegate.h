@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "DataHelper.h"
+#import "DataManager.h"
 
 @interface AppDelegate : UIResponder <UIApplicationDelegate>
 

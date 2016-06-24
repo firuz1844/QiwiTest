@@ -7,7 +7,7 @@
 //
 
 #import "BalanceViewController.h"
-#import "DataHelper.h"
+#import "DataManager.h"
 #import "BalanceViewModel.h"
 
 #import "ReactiveCocoa.h"
@@ -41,18 +41,21 @@
     [self.tableView addSubview:refreshControl];
     
     NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
-    NSEntityDescription *entity = [NSEntityDescription entityForName:@"Balance" inManagedObjectContext:[[DataHelper shared] defaultContext]];
+    NSEntityDescription *entity = [NSEntityDescription entityForName:@"Balance" inManagedObjectContext:[[DataManager shared] defaultContext]];
     [fetchRequest setEntity:entity];
     [fetchRequest setFetchBatchSize:20];
     
-    NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"currency" ascending:NO];
-    NSArray *sortDescriptors = @[sortDescriptor];
+    NSSortDescriptor *currencyDescriptor = [[NSSortDescriptor alloc] initWithKey:@"currency" ascending:NO];
+    
+    NSSortDescriptor *amountDescriptor = [[NSSortDescriptor alloc] initWithKey:@"amount" ascending:NO];
+
+    NSArray *sortDescriptors = @[currencyDescriptor, amountDescriptor];
     
     [fetchRequest setPredicate:[NSPredicate predicateWithFormat:@"userId == %@", self.person.person.userId]];
     [fetchRequest setSortDescriptors:sortDescriptors];
 
     
-    self.fetchedResultsController = [[DataHelper shared] fetchedResultsControllerWithFetchRequest:fetchRequest];
+    self.fetchedResultsController = [[DataManager shared] fetchedResultsControllerWithFetchRequest:fetchRequest];
     self.fetchedResultsController.delegate = self;
     
     [self loadData:nil];
@@ -69,7 +72,7 @@
 
 - (void)loadData:(void (^)(void))completion {
     @weakify(self)
-    [[DataHelper shared] loadBalanceForPerson:self.person.person completion:^(ResponseObject *response) {
+    [[DataManager shared] loadBalanceForPerson:self.person.person completion:^(ResponseObject *response) {
         @strongify(self)
         UIAlertController *alert = [AlertHelper alertControllerWith:response retryAction:^{
             @strongify(self)

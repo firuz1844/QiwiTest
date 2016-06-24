@@ -6,7 +6,7 @@
 //  Copyright © 2016 Firuz Narzikulov. All rights reserved.
 //
 
-#import "RestHeper.h"
+#import "RestHelper.h"
 
 #import <RestKit/CoreData.h>
 #import <RestKit/RestKit.h>
@@ -24,14 +24,14 @@ static NSString * const kBalancePath = @"/mobile/testtask/users/%@/index.json";
 static NSString * const kBalanceKeyPath = @"balances";
 
 
-@interface RestHeper()
+@interface RestHelper()
 
 @property (nonatomic, strong) RKObjectManager *objectManager;
 
 @end
 
 
-@implementation RestHeper
+@implementation RestHelper
 
 -(instancetype)init {
     self = [super init];

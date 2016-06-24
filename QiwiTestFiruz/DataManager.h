@@ -1,5 +1,5 @@
 //
-//  DataHelper.h
+//  DataManager.h
 //  QiwiTestFiruz
 //
 //  Created by Firuz Narzikulov on 22.06.16.
@@ -9,10 +9,10 @@
 #import <Foundation/Foundation.h>
 #import <CoreData/CoreData.h>
 
-@class RestHeper;
+@class RestHelper;
 @class PersonViewModel, BalanceViewModel, Person, ResponseObject;
 
-@interface DataHelper : NSObject
+@interface DataManager : NSObject
 
 + (instancetype)shared;
 

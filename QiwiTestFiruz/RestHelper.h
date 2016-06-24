@@ -21,7 +21,7 @@
 
 @class Person, Balance, ResponseObject;
 
-@interface RestHeper : NSObject
+@interface RestHelper : NSObject
 
 // Getting models
 - (void)loadPersons:(void (^)(ResponseObject *response, NSError *error))completion;
