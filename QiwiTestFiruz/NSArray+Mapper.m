@@ -10,10 +10,10 @@
 
 @implementation NSArray (Mapper)
 
-- (NSArray*)mapWithBlock:(id (^)(id model))blockName {
+- (NSArray*)mapWithBlock:(id (^)(id model))transform {
     NSMutableArray *newArray = [NSMutableArray new];
-    for (id model in self) {
-        [newArray addObject:blockName(model)];
+    for (id object in self) {
+        [newArray addObject:transform(object)];
     }
     return [newArray copy];
 }

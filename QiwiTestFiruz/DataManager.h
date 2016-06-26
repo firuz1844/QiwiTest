@@ -9,18 +9,17 @@
 #import <Foundation/Foundation.h>
 #import <CoreData/CoreData.h>
 
-@class RestHelper;
+@class RestHelper, FetchResultController;
 @class PersonViewModel, BalanceViewModel, Person, ResponseObject;
 
 @interface DataManager : NSObject
 
 + (instancetype)shared;
 
-// Getting view models
-- (void)updatePersons:(void (^)(ResponseObject *response))completion;
+- (void)loadPersons:(void (^)(ResponseObject *response))completion;
 - (void)loadBalanceForPerson:(Person*)person completion:(void (^)(ResponseObject *response))completion;
 
 
-- (NSFetchedResultsController*)fetchedResultsControllerWithFetchRequest:(NSFetchRequest*)fetchRequest;
+- (FetchResultController*)fetchedResultsControllerWithFetchRequest:(NSFetchRequest*)fetchRequest;
 - (NSManagedObjectContext*)defaultContext;
 @end

@@ -9,6 +9,7 @@
 #import "BalanceViewController.h"
 #import "DataManager.h"
 #import "BalanceViewModel.h"
+#import "FetchResultController.h"
 
 #import "ReactiveCocoa.h"
 
@@ -17,7 +18,7 @@
 @interface BalanceViewController () <NSFetchedResultsControllerDelegate>
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
-@property (nonatomic, strong) NSFetchedResultsController *fetchedResultsController;
+@property (nonatomic, strong) FetchResultController *fetchedResultsController;
 
 
 @end
@@ -94,8 +95,8 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell" forIndexPath:indexPath];
-    BalanceViewModel *object = [[BalanceViewModel alloc] initWithBalance:[self.fetchedResultsController objectAtIndexPath:indexPath]];
-    [self configureCell:cell withObject:object];
+    BalanceViewModel *model = [self.fetchedResultsController viewModelAtIndexPath:indexPath];
+    [self configureCell:cell withObject:model];
     return cell;
 }
 

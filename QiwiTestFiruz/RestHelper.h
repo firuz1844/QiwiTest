@@ -23,7 +23,6 @@
 
 @interface RestHelper : NSObject
 
-// Getting models
 - (void)loadPersons:(void (^)(ResponseObject *response, NSError *error))completion;
 - (void)loadBalanceForPerson:(Person*)person completion:(void (^)(ResponseObject *response, NSError *error))completion;
 

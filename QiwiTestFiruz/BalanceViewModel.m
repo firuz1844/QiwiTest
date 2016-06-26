@@ -19,7 +19,7 @@
         NSNumberFormatter *formatter = [[NSNumberFormatter alloc] init];
         formatter.locale = [NSLocale currentLocale];
         formatter.numberStyle = NSNumberFormatterCurrencyStyle;
-        [formatter setCurrencyCode:balance.currency];
+        formatter.currencyCode = balance.currency;
         
         _balanceString = [NSString stringWithFormat:@"%@", [formatter stringFromNumber:balance.amount]];
     }

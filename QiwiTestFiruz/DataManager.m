@@ -8,12 +8,11 @@
 
 #import "DataManager.h"
 #import "RestHelper.h"
+#import "FetchResultController.h"
 
 #import "PersonViewModel.h"
 #import "BalanceViewModel.h"
 #import "ResponseObject.h"
-
-#import "NSArray+Mapper.h"
 
 @interface DataManager()
 
@@ -41,7 +40,7 @@ static DataManager *DataManagerInstance = nil;
     return DataManagerInstance;
 }
 
-- (void)updatePersons:(void (^)(ResponseObject *response))completion {
+- (void)loadPersons:(void (^)(ResponseObject *response))completion {
     [self clearResponses];
     [self.restHelper loadPersons:^(ResponseObject *response, NSError *error) {
         if (!error) {
@@ -88,30 +87,12 @@ static DataManager *DataManagerInstance = nil;
 
 }
 
-
-- (NSArray*)personViewModelsWithArray:(NSArray*)array {
-    NSArray *viewModels = [array mapWithBlock:^id(id model) {
-        PersonViewModel *viewModel = [[PersonViewModel alloc] initWithPerson:model];
-        return viewModel;
-    }];
-    return viewModels;
-}
-
-- (NSArray*)balanceViewModelsWithArray:(NSArray*)array {
-    NSArray *viewModels = [array mapWithBlock:^id(id model) {
-        BalanceViewModel *viewModel = [[BalanceViewModel alloc] initWithBalance:model];
-        return viewModel;
-    }];
-    return viewModels;
-}
-
-
 #pragma mark - Fetched results controller
 
-- (NSFetchedResultsController*)fetchedResultsControllerWithFetchRequest:(NSFetchRequest*)fetchRequest;
+- (FetchResultController*)fetchedResultsControllerWithFetchRequest:(NSFetchRequest*)fetchRequest;
 {
     
-    NSFetchedResultsController *controller = [[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest managedObjectContext:[self defaultContext] sectionNameKeyPath:nil cacheName:nil];
+    FetchResultController *controller = [[FetchResultController alloc] initWithFetchRequest:fetchRequest managedObjectContext:[self defaultContext] sectionNameKeyPath:nil cacheName:nil];
     
     NSError *error = nil;
     if (![controller performFetch:&error]) {

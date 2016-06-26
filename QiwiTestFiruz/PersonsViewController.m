@@ -8,6 +8,7 @@
 
 #import "PersonsViewController.h"
 #import "BalanceViewController.h"
+#import "FetchResultController.h"
 
 #import "DataManager.h"
 #import "PersonViewModel.h"
@@ -16,7 +17,7 @@
 
 @interface PersonsViewController () <NSFetchedResultsControllerDelegate>
 
-@property (nonatomic, strong) NSFetchedResultsController *fetchedResultsController;
+@property (nonatomic, strong) FetchResultController *fetchedResultsController;
 
 @end
 
@@ -54,7 +55,7 @@
 }
 
 - (void)updateDataCompletion:(void(^)(void))completion {
-    [[DataManager shared] updatePersons:^(ResponseObject *response) {
+    [[DataManager shared] loadPersons:^(ResponseObject *response) {
         
         if (completion) completion();
     }];
@@ -76,7 +77,7 @@ static NSString * const kShowBalanceSegueIdentifier = @"showBalances";
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     if ([[segue identifier] isEqualToString:kShowBalanceSegueIdentifier]) {
         NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
-        PersonViewModel *object = [[PersonViewModel alloc] initWithPerson:[self.fetchedResultsController objectAtIndexPath:indexPath]];
+        PersonViewModel *object = [self.fetchedResultsController viewModelAtIndexPath:indexPath];
         BalanceViewController *controller = (BalanceViewController *)[[segue destinationViewController] topViewController];
         [controller setPerson:object];
         controller.navigationItem.leftBarButtonItem = self.splitViewController.displayModeButtonItem;
@@ -97,8 +98,8 @@ static NSString * const kShowBalanceSegueIdentifier = @"showBalances";
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell" forIndexPath:indexPath];
-    PersonViewModel *object = [[PersonViewModel alloc] initWithPerson:[self.fetchedResultsController objectAtIndexPath:indexPath]];
-    [self configureCell:cell withObject:object];
+    PersonViewModel *model = [self.fetchedResultsController viewModelAtIndexPath:indexPath];
+    [self configureCell:cell withObject:model];
     return cell;
 }
 

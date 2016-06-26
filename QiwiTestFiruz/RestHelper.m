@@ -56,50 +56,49 @@ static NSString * const kBalanceKeyPath = @"balances";
     // Initialize the Core Data stack
     [managedObjectStore createPersistentStoreCoordinator];
     
-    // Persistent store on disk
+    // Persistent store on disk (for persons)
     NSString *storePath = [RKApplicationDataDirectory() stringByAppendingPathComponent:@"QiwiTestFiruz.sqlite"];
     NSString *seedPath = [[NSBundle mainBundle] pathForResource:@"QiwiTestFiruz" ofType:@"sqlite"];
     NSPersistentStore *persistentStoreDisk = [managedObjectStore addSQLitePersistentStoreAtPath:storePath fromSeedDatabaseAtPath:seedPath withConfiguration:@"Disk" options:nil error:&error];
-    NSAssert(persistentStoreDisk, @"Failed to add persistent store: %@", error);
+    NSAssert(persistentStoreDisk, @"Failed to add disk persistent store: %@", error);
     
-    // Persistent store in memory
+    // Persistent store in memory (for balaces)
     NSPersistentStore *persistentStoreMemory = [managedObjectStore.persistentStoreCoordinator addPersistentStoreWithType:NSInMemoryStoreType configuration:@"Memory" URL:nil options:nil error:&error];
-    NSAssert(persistentStoreMemory, @"Failed to add persistent store: %@", error);
+    NSAssert(persistentStoreMemory, @"Failed to add in-memory persistent store: %@", error);
     
-    // Context
     [managedObjectStore createManagedObjectContexts];
-    
-    // Set the default store shared instance
     [RKManagedObjectStore setDefaultStore:managedObjectStore];
     
-    
-    // Mapping entities
-    
     [RKObjectManager setSharedManager:self.objectManager];
-    
+
+    // Mapping entities
+    RKEntityMapping *responseMapping = [RKEntityMapping mappingForEntityForName:@"ResponseObject" inManagedObjectStore:managedObjectStore];
+    [responseMapping addAttributeMappingsFromDictionary:[ResponseObject attributesKeyMap]];
+    RKResponseDescriptor *descriptor =
+    [RKResponseDescriptor responseDescriptorWithMapping:responseMapping
+                                                 method:RKRequestMethodGET
+                                            pathPattern:nil
+                                                keyPath:nil
+                                            statusCodes:RKStatusCodeIndexSetForClass(RKStatusCodeClassSuccessful)
+     ];
+
+    [self.objectManager addResponseDescriptor:descriptor];
+
     RKEntityMapping *personMapping = [RKEntityMapping mappingForEntityForName:@"Person" inManagedObjectStore:managedObjectStore];
     [personMapping addAttributeMappingsFromDictionary:[Person attributesKeyMap]];
     personMapping.identificationAttributes = [Person identificationAttributes];
-    
-    
-    RKEntityMapping *balanceMapping = [RKEntityMapping mappingForEntityForName:@"Balance" inManagedObjectStore:managedObjectStore];
-    [balanceMapping addAttributeMappingsFromDictionary:[Balance attributesKeyMap]];
-
-    
-    RKEntityMapping *responseMapping = [RKEntityMapping mappingForEntityForName:@"ResponseObject" inManagedObjectStore:managedObjectStore];
-    [responseMapping addAttributeMappingsFromDictionary:[ResponseObject attributesKeyMap]];
-    
-    
-    RKResponseDescriptor *descriptor =
+    descriptor =
     [RKResponseDescriptor responseDescriptorWithMapping:personMapping
                                                  method:RKRequestMethodGET
                                             pathPattern:nil
                                                 keyPath:kPersonsKeyPath
                                             statusCodes:RKStatusCodeIndexSetForClass(RKStatusCodeClassSuccessful)
      ];
-    
     [self.objectManager addResponseDescriptor:descriptor];
+
     
+    RKEntityMapping *balanceMapping = [RKEntityMapping mappingForEntityForName:@"Balance" inManagedObjectStore:managedObjectStore];
+    [balanceMapping addAttributeMappingsFromDictionary:[Balance attributesKeyMap]];
     descriptor =
     [RKResponseDescriptor responseDescriptorWithMapping:balanceMapping
                                                  method:RKRequestMethodGET
@@ -108,19 +107,7 @@ static NSString * const kBalanceKeyPath = @"balances";
                                             statusCodes:RKStatusCodeIndexSetForClass(RKStatusCodeClassSuccessful)
      ];
     
-    
     [self.objectManager addResponseDescriptor:descriptor];
-    
-    descriptor =
-    [RKResponseDescriptor responseDescriptorWithMapping:responseMapping
-                                                 method:RKRequestMethodGET
-                                            pathPattern:nil
-                                                keyPath:nil
-                                            statusCodes:RKStatusCodeIndexSetForClass(RKStatusCodeClassSuccessful)
-     ];
-    
-    [self.objectManager addResponseDescriptor:descriptor];
-    
     
     [AFNetworkActivityIndicatorManager sharedManager].enabled = YES;
 }
