@@ -6,9 +6,12 @@
 //  Copyright © 2016 Firuz Narzikulov. All rights reserved.
 //
 
+/**
+ ViewController knows only about view-models
+ */
 #import <UIKit/UIKit.h>
-#import "PersonViewModel.h"
 
+@class PersonViewModel;
 @interface BalanceViewController : UIViewController <UITableViewDelegate, UITableViewDataSource>
 
 @property (strong, nonatomic) PersonViewModel *person;

@@ -6,6 +6,10 @@
 //  Copyright © 2016 Firuz Narzikulov. All rights reserved.
 //
 
+/**
+ RestHelper knows only about model-objets
+ */
+
 #import <Foundation/Foundation.h>
 #import <CoreData/CoreData.h>
 

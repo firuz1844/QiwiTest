@@ -7,6 +7,7 @@
 //
 
 #import "BalanceViewModel.h"
+#import "Balance.h"
 
 @implementation BalanceViewModel
 

@@ -7,7 +7,8 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "Person.h"
+
+@class Person;
 
 @interface PersonViewModel : NSObject
 

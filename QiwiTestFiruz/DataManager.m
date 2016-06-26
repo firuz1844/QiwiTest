@@ -11,7 +11,9 @@
 #import "FetchResultController.h"
 
 #import "PersonViewModel.h"
+#import "Person.h"
 #import "BalanceViewModel.h"
+#import "Balance.h"
 #import "ResponseObject.h"
 
 @interface DataManager()

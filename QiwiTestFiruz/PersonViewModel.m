@@ -7,6 +7,7 @@
 //
 
 #import "PersonViewModel.h"
+#import "Person.h"
 
 @implementation PersonViewModel
 

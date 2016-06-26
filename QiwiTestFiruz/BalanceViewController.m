@@ -7,12 +7,13 @@
 //
 
 #import "BalanceViewController.h"
-#import "DataManager.h"
-#import "BalanceViewModel.h"
 #import "FetchResultController.h"
 
-#import "ReactiveCocoa.h"
+#import "DataManager.h"
+#import "PersonViewModel.h"
+#import "BalanceViewModel.h"
 
+#import "ReactiveCocoa.h"
 #import "AlertHelper.h"
 
 @interface BalanceViewController () <NSFetchedResultsControllerDelegate>

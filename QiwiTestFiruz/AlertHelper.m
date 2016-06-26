@@ -9,7 +9,6 @@
 #import "AlertHelper.h"
 #import "ResponseObject.h"
 #import "Masonry.h"
-#import "ReactiveCocoa.h"
 
 @implementation AlertHelper
 

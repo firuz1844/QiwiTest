@@ -6,6 +6,10 @@
 //  Copyright © 2016 Firuz Narzikulov. All rights reserved.
 //
 
+/**
+ ViewController knows only about view-models
+ */
+
 #import <UIKit/UIKit.h>
 
 @class BalanceViewController;

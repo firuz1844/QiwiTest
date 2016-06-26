@@ -7,7 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "Balance.h"
+@class Balance;
 
 @interface BalanceViewModel : NSObject
 

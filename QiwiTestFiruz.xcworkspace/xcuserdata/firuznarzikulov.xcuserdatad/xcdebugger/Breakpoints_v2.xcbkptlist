@@ -20,11 +20,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "QiwiTestFiruz/PersonsViewController.m"
-            timestampString = "488628325.81586"
+            timestampString = "488628770.013198"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "74"
-            endingLineNumber = "74"
+            startingLineNumber = "73"
+            endingLineNumber = "73"
             landmarkName = "-loadData:"
             landmarkType = "5">
          </BreakpointContent>
