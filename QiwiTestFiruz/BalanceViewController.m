@@ -19,6 +19,7 @@
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (nonatomic, strong) FetchResultController *fetchedResultsController;
+@property (nonatomic, strong) UIView *viewWithindicator;
 
 
 @end
@@ -61,7 +62,16 @@
     
     [self loadData:nil];
     
+    self.tableView.tableFooterView = [UIView new];
 }
+
+- (UIView *)viewWithindicator {
+    if (!_viewWithindicator) {
+        _viewWithindicator = [AlertHelper viewWithIndicatorAddedToView:self.view];
+    }
+    return _viewWithindicator;
+}
+
 
 - (void)refresh:(UIRefreshControl *)refreshControl {
     [self loadData:^{
@@ -72,6 +82,7 @@
 }
 
 - (void)loadData:(void (^)(void))completion {
+    self.viewWithindicator.hidden = NO;
     @weakify(self)
     [[DataManager shared] loadBalanceForPerson:self.person.person completion:^(ResponseObject *response) {
         @strongify(self)
@@ -79,7 +90,8 @@
             @strongify(self)
             [self loadData:nil];
         }];
-        if (alert) [self presentViewController:alert animated:YES completion:nil];
+        if (alert) [self safePresentViewController:alert animated:YES completion:nil];
+        self.viewWithindicator.hidden = YES;
         if (completion) completion();
     }];
 }
@@ -110,5 +122,11 @@
 
 - (void)controllerDidChangeContent:(NSFetchedResultsController *)controller {
     [self.tableView reloadData];
+}
+
+- (void)safePresentViewController:(UIViewController *)viewControllerToPresent animated:(BOOL)flag completion:(void (^)(void))completion {
+    if (self.view.window) {
+        [self presentViewController:viewControllerToPresent animated:flag completion:completion];
+    }
 }
 @end

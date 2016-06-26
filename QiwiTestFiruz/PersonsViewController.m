@@ -14,10 +14,12 @@
 #import "PersonViewModel.h"
 
 #import "ReactiveCocoa.h"
+#import "AlertHelper.h"
 
 @interface PersonsViewController () <NSFetchedResultsControllerDelegate>
 
 @property (nonatomic, strong) FetchResultController *fetchedResultsController;
+@property (nonatomic, strong) UIView *viewWithindicator;
 
 @end
 
@@ -45,18 +47,37 @@
     self.fetchedResultsController = [[DataManager shared] fetchedResultsControllerWithFetchRequest:fetchRequest];
     self.fetchedResultsController.delegate = self;
     
-    [self updateDataCompletion:nil];
+    self.tableView.tableFooterView = [UIView new];
+    
+    [self loadData:nil];
+}
+
+- (UIView *)viewWithindicator {
+    if (!_viewWithindicator) {
+        _viewWithindicator = [AlertHelper viewWithIndicatorAddedToView:self.navigationController.view];
+    }
+    return _viewWithindicator;
 }
 
 - (void)refresh:(UIRefreshControl *)refreshControl {
-    [self updateDataCompletion:^{
+    [self loadData:^{
         [refreshControl endRefreshing];
     }];
 }
 
-- (void)updateDataCompletion:(void(^)(void))completion {
+- (void)loadData:(void(^)(void))completion {
+    self.viewWithindicator.hidden = NO;
+    @weakify(self)
     [[DataManager shared] loadPersons:^(ResponseObject *response) {
+        @strongify(self)
         
+        UIAlertController *alert = [AlertHelper alertControllerWith:response retryAction:^{
+            @strongify(self)
+            [self loadData:nil];
+        }];
+        if (alert) [self safePresentViewController:alert animated:YES completion:nil];
+
+        self.viewWithindicator.hidden = YES;
         if (completion) completion();
     }];
 }
@@ -110,6 +131,12 @@ static NSString * const kShowBalanceSegueIdentifier = @"showBalances";
 - (void)controllerDidChangeContent:(NSFetchedResultsController *)controller
 {
     [self.tableView reloadData];
+}
+
+- (void)safePresentViewController:(UIViewController *)viewControllerToPresent animated:(BOOL)flag completion:(void (^)(void))completion {
+    if (self.view.window) {
+        [self presentViewController:viewControllerToPresent animated:flag completion:completion];
+    }
 }
 
 @end

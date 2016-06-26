@@ -6,5 +6,6 @@ target 'QiwiTestFiruz' do
   # Pods for QiwiTestFiruz
   pod 'RestKit', '~> 0.26'
   pod 'ReactiveCocoa', '~> 2.5'
+  pod 'Masonry'
 
 end
