@@ -26,8 +26,9 @@
 		9AE891A31D1C8EEF00B37FE8 /* Person.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AE891A11D1C8EEF00B37FE8 /* Person.m */; };
 		9AE891AB1D1C904800B37FE8 /* ResponseObject+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AE891A81D1C904800B37FE8 /* ResponseObject+CoreDataProperties.m */; };
 		9AE891AC1D1C904800B37FE8 /* ResponseObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AE891AA1D1C904800B37FE8 /* ResponseObject.m */; };
-		9AE891AF1D1DC8F900B37FE8 /* AlertHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AE891AE1D1DC8F900B37FE8 /* AlertHelper.m */; };
+		9AE891AF1D1DC8F900B37FE8 /* UIHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AE891AE1D1DC8F900B37FE8 /* UIHelper.m */; };
 		9AE891B21D1FB48B00B37FE8 /* FetchResultController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AE891B11D1FB48B00B37FE8 /* FetchResultController.m */; };
+		9AE891B51D1FED1D00B37FE8 /* UIAlertController+Window.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AE891B41D1FED1D00B37FE8 /* UIAlertController+Window.m */; };
 		C983899CFFAC526014B24D51 /* libPods-QiwiTestFiruz.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 09BAB71A2047033C74B1308E /* libPods-QiwiTestFiruz.a */; };
 /* End PBXBuildFile section */
 
@@ -69,10 +70,12 @@
 		9AE891A81D1C904800B37FE8 /* ResponseObject+CoreDataProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "ResponseObject+CoreDataProperties.m"; sourceTree = "<group>"; };
 		9AE891A91D1C904800B37FE8 /* ResponseObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ResponseObject.h; sourceTree = "<group>"; };
 		9AE891AA1D1C904800B37FE8 /* ResponseObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ResponseObject.m; sourceTree = "<group>"; };
-		9AE891AD1D1DC8F900B37FE8 /* AlertHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AlertHelper.h; sourceTree = "<group>"; };
-		9AE891AE1D1DC8F900B37FE8 /* AlertHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AlertHelper.m; sourceTree = "<group>"; };
+		9AE891AD1D1DC8F900B37FE8 /* UIHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIHelper.h; sourceTree = "<group>"; };
+		9AE891AE1D1DC8F900B37FE8 /* UIHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIHelper.m; sourceTree = "<group>"; };
 		9AE891B01D1FB48B00B37FE8 /* FetchResultController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FetchResultController.h; sourceTree = "<group>"; };
 		9AE891B11D1FB48B00B37FE8 /* FetchResultController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FetchResultController.m; sourceTree = "<group>"; };
+		9AE891B31D1FED1D00B37FE8 /* UIAlertController+Window.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIAlertController+Window.h"; sourceTree = "<group>"; };
+		9AE891B41D1FED1D00B37FE8 /* UIAlertController+Window.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIAlertController+Window.m"; sourceTree = "<group>"; };
 		A4F566DD51F7FB8DEBBC35E2 /* Pods-QiwiTestFiruz.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-QiwiTestFiruz.release.xcconfig"; path = "Pods/Target Support Files/Pods-QiwiTestFiruz/Pods-QiwiTestFiruz.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -131,8 +134,7 @@
 		9A4209521D1B0992002D4353 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
-				9AE891AD1D1DC8F900B37FE8 /* AlertHelper.h */,
-				9AE891AE1D1DC8F900B37FE8 /* AlertHelper.m */,
+				9AE891B61D1FEEC500B37FE8 /* UIhelper */,
 				9A42093E1D1B0640002D4353 /* PersonsViewController.h */,
 				9A42093F1D1B0640002D4353 /* PersonsViewController.m */,
 				9A4209411D1B0640002D4353 /* BalanceViewController.h */,
@@ -205,6 +207,17 @@
 				9A7593431D1B376900C3A8FE /* NSArray+Mapper.m */,
 			);
 			name = Model;
+			sourceTree = "<group>";
+		};
+		9AE891B61D1FEEC500B37FE8 /* UIhelper */ = {
+			isa = PBXGroup;
+			children = (
+				9AE891AD1D1DC8F900B37FE8 /* UIHelper.h */,
+				9AE891AE1D1DC8F900B37FE8 /* UIHelper.m */,
+				9AE891B31D1FED1D00B37FE8 /* UIAlertController+Window.h */,
+				9AE891B41D1FED1D00B37FE8 /* UIAlertController+Window.m */,
+			);
+			name = UIhelper;
 			sourceTree = "<group>";
 		};
 		A34611FC27C3D73F86768FE8 /* Frameworks */ = {
@@ -351,13 +364,14 @@
 				9AE891B21D1FB48B00B37FE8 /* FetchResultController.m in Sources */,
 				9A4209401D1B0640002D4353 /* PersonsViewController.m in Sources */,
 				9AB450AC1D1B0F2400079840 /* PersonViewModel.m in Sources */,
+				9AE891B51D1FED1D00B37FE8 /* UIAlertController+Window.m in Sources */,
 				9AB450A61D1B0DAE00079840 /* RestHelper.m in Sources */,
 				9A42093A1D1B0640002D4353 /* AppDelegate.m in Sources */,
 				9AE891AB1D1C904800B37FE8 /* ResponseObject+CoreDataProperties.m in Sources */,
 				9A7593441D1B376900C3A8FE /* NSArray+Mapper.m in Sources */,
 				9AE8919D1D1C8E8A00B37FE8 /* Balance.m in Sources */,
 				9AB450BA1D1B122000079840 /* BalanceViewModel.m in Sources */,
-				9AE891AF1D1DC8F900B37FE8 /* AlertHelper.m in Sources */,
+				9AE891AF1D1DC8F900B37FE8 /* UIHelper.m in Sources */,
 				9AB450BD1D1B13AE00079840 /* DataManager.m in Sources */,
 				9A42093D1D1B0640002D4353 /* QiwiTestFiruz.xcdatamodeld in Sources */,
 				9AE891A31D1C8EEF00B37FE8 /* Person.m in Sources */,

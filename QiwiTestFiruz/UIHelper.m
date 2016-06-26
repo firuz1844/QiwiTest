@@ -1,16 +1,16 @@
 //
-//  AlertHelper.m
+//  UIHelper.m
 //  QiwiTestFiruz
 //
 //  Created by Firuz Narzikulov on 24.06.16.
 //  Copyright © 2016 Firuz Narzikulov. All rights reserved.
 //
 
-#import "AlertHelper.h"
+#import "UIHelper.h"
 #import "ResponseObject.h"
 #import "Masonry.h"
 
-@implementation AlertHelper
+@implementation UIHelper
 
 + (UIAlertController*)alertControllerWith:(ResponseObject*)responseObject retryAction:(void(^)(void))retryAction {
     if (responseObject.code != 0) {
@@ -31,10 +31,11 @@
         [alertController addAction:retry];
         
         return alertController;
-
+        
     }
     return nil;
 }
+
 + (UIView*)viewWithIndicatorAddedToView:(UIView*)superview {
     
     UIView *view = [UIView new];
@@ -62,14 +63,14 @@
     
     [label mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerY.equalTo(view.mas_centerY);
-        make.centerX.equalTo(view.mas_centerX);
+        make.centerX.equalTo(view.mas_centerX).with.offset(20.0);
         make.leftMargin.equalTo(indicator.mas_right);
         make.centerY.equalTo(indicator.mas_centerY);
     }];
     
     [indicator mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.width.equalTo(@50);
-        make.height.equalTo(@50);
+        make.width.equalTo(@40);
+        make.height.equalTo(@40);
     }];
     
     return view;

@@ -11,10 +11,11 @@
 
 #import "DataManager.h"
 #import "PersonViewModel.h"
+#import "Person.h"
 #import "BalanceViewModel.h"
 
 #import "ReactiveCocoa.h"
-#import "AlertHelper.h"
+#import "UIHelper.h"
 
 @interface BalanceViewController () <NSFetchedResultsControllerDelegate>
 
@@ -68,7 +69,7 @@
 
 - (UIView *)viewWithindicator {
     if (!_viewWithindicator) {
-        _viewWithindicator = [AlertHelper viewWithIndicatorAddedToView:self.view];
+        _viewWithindicator = [UIHelper viewWithIndicatorAddedToView:self.view];
     }
     return _viewWithindicator;
 }
@@ -87,11 +88,10 @@
     @weakify(self)
     [[DataManager shared] loadBalanceForPerson:self.person.person completion:^(ResponseObject *response) {
         @strongify(self)
-        UIAlertController *alert = [AlertHelper alertControllerWith:response retryAction:^{
+        [[UIHelper alertControllerWith:response retryAction:^{
             @strongify(self)
             [self loadData:nil];
-        }];
-        if (alert) [self safePresentViewController:alert animated:YES completion:nil];
+        }] show];
         self.viewWithindicator.hidden = YES;
         if (completion) completion();
     }];
@@ -125,9 +125,4 @@
     [self.tableView reloadData];
 }
 
-- (void)safePresentViewController:(UIViewController *)viewControllerToPresent animated:(BOOL)flag completion:(void (^)(void))completion {
-    if (self.view.window) {
-        [self presentViewController:viewControllerToPresent animated:flag completion:completion];
-    }
-}
 @end

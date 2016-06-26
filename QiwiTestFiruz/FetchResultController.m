@@ -8,7 +8,9 @@
 
 #import "FetchResultController.h"
 #import "PersonViewModel.h"
+#import "Person.h"
 #import "BalanceViewModel.h"
+#import "Balance.h"
 
 #import "NSArray+Mapper.h"
 @implementation FetchResultController
